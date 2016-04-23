@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:text="Contacts"
         android:id="@+id/buttonCon"
-        android:onClick="callContacts"
+        android:onClick="onClick"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="50dp" />

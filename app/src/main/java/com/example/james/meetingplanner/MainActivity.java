@@ -32,11 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void callContacts(View v) {
-        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(intent, PICK_CONTACT);
-    }
-
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
@@ -57,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.buttonCon:
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, PICK_CONTACT);
+            break;
             case R.id.buttonTime:
                 FragmentManager fmTime = this.getFragmentManager();
                 DialogFragment timeFragment = new TimePickerFragment(this);
