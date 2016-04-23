@@ -25,8 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
     private final int PICK_CONTACT = 1;
 
-    public void callContacts(View v) {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void callContacts(View v) {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         startActivityForResult(intent, PICK_CONTACT);
     }
@@ -47,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
-
 }
 
 
