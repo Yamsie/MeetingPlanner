@@ -58,9 +58,17 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.buttonTime:
-            FragmentManager fm = this.getFragmentManager();
-            DialogFragment newFragment = new TimePickerFragment(this);
-            newFragment.show(fm, "timePicker");
+                FragmentManager fmTime = this.getFragmentManager();
+                DialogFragment timeFragment = new TimePickerFragment(this);
+                timeFragment.show(fmTime, "timePicker");
+            break;
+
+            case R.id.buttonDate:
+                FragmentManager fmDate = this.getFragmentManager();
+                DialogFragment dateFragment = new DatePickerFragment(this);
+                dateFragment.show(fmDate, "datePicker");
+            break;
+
         }
     }
 }
