@@ -10,12 +10,12 @@ public class DBContract {
 
     public class EntryToTableFriends implements BaseColumns {
         public static final String TABLE = "friends";
-        public static final String COL_TASK_TITLE = "name";
+        public static final String COL6 = "name";
     }
 
     public class EntryToTableLocations implements BaseColumns {
         public static final String TABLE = "locations";
-        public static final String COL_TASK_TITLE = "places";
+        public static final String COL5 = "places";
     }
 
     public class EntryToTableMeetings implements BaseColumns {

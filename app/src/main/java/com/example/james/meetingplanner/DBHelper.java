@@ -5,17 +5,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DBHelper extends SQLiteOpenHelper {
-    // Define the SQLite database name
-    private static final String DATABASE_NAME = "FriendlyReminder.db";
-    // Define the SQLite database version
-    private static final int DATABASE_VERSION = 1;
-    // Define the SQLite Tables names to create
-    public static final String TABLE_FRIEND = "Friend";
-    public static final String TABLE_LOCATION = "Location";
-    public static final String TABLE_MEETING = "Meeting";
 
     public DBHelper(Context context){
-        super(context,DATABASE_NAME,null,1);
+        super(context,DBContract.DB_NAME,null,1);
     }
 
     @Override
