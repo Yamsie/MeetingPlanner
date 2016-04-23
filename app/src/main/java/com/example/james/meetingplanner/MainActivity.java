@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private final int PICK_CONTACT = 1;
-
+    private DBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
