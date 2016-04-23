@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         switch(v.getId()){
             case R.id.buttonTime:
             FragmentManager fm = this.getFragmentManager();
-            DialogFragment newFragment = new TimePickerFragment();
+            DialogFragment newFragment = new TimePickerFragment(this);
             newFragment.show(fm, "timePicker");
         }
     }
