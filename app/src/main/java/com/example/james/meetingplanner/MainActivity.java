@@ -54,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.buttonTime:
+            FragmentManager fm = this.getFragmentManager();
+            DialogFragment newFragment = new TimePickerFragment();
+            newFragment.show(fm, "timePicker");
+        }
+    }
 }
 
 
