@@ -63,28 +63,29 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Enter Name!"
+        android:text="Name"
         android:ems="10"
         android:id="@+id/editCon"
+        android:singleLine="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
 
-    <EditText
+    <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="time"
         android:ems="10"
+        android:text="Time"
         android:id="@+id/editTime"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />
 
-    <EditText
+    <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="date"
         android:ems="10"
+        android:text="Date"
         android:id="@+id/editDate"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -94,6 +95,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/editLoc"
+        android:singleLine="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp" />
@@ -102,6 +104,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/editAct"
+        android:singleLine="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp" />
@@ -162,6 +165,7 @@
         android:layout_height="wrap_content"
         android:text="Submit!"
         android:id="@+id/buttonSubmit"
+        android:onClick="onClick"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp" />
