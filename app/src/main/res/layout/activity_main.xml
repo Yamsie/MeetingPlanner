@@ -77,6 +77,9 @@
         android:ems="10"
         android:text="Time"
         android:id="@+id/editTime"
+        android:typeface="sans"
+        android:textColor="?attr/editTextColor"
+        android:background="?attr/editTextBackground"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />
@@ -87,6 +90,9 @@
         android:ems="10"
         android:text="Date"
         android:id="@+id/editDate"
+        android:typeface="sans"
+        android:textColor="?attr/editTextColor"
+        android:background="?attr/editTextBackground"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp" />
