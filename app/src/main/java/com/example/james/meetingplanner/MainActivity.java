@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.CalendarContract;
 import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +20,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -84,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
-                if(dateFragment != null && timeFragment != null && isValid(en) && isValid(el) && isValid(ea)) {
+                EditText edu = (EditText) findViewById(R.id.editDur);
+                if(dateFragment != null && timeFragment != null && isValid(en) && isValid(el) && isValid(ea) && isValidNum(edu)) {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
                     if(compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
@@ -100,8 +103,10 @@ public class MainActivity extends AppCompatActivity {
                             calintent.setType("vnd.android.cursor.item/event");
                             calintent.putExtra("beginTime", cal.getTimeInMillis());
                             calintent.putExtra("allDay", false);
-                            calintent.putExtra("duration", "PT.5H");
+                            calintent.putExtra("endTime", cal.getTimeInMillis() + (2 * 60 * 60 * 1000));
                             calintent.putExtra("title", "Meeting with " + en.getText().toString() + "!");
+
+                            NumberPicker noPicker;
                             startActivity(calintent);
                         } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
@@ -148,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
         boolean returnValue = false;
         String regex = "[A-Za-z0-9]+";
         if(etText.getText().toString().matches(regex) && etText.getText().toString().trim().length() > 0) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+
+    private boolean isValidNum(EditText etText) {
+        boolean returnValue = false;
+        if(!etText.getText().toString().equals("") && Integer.parseInt(etText.getText().toString()) <= 12 && Integer.parseInt(etText.getText().toString()) > 0) {
             returnValue = true;
         }
         return returnValue;
