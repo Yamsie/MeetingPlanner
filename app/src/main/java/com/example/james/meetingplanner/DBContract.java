@@ -25,6 +25,7 @@ public class DBContract {
         public static final String COL3 = "time";
         public static final String COL4 = "date";
         public static final String COL5 = "activity";
+        public static final String COL9 = "duration";
     }
 
     public class EntryToActivityTable implements BaseColumns{
