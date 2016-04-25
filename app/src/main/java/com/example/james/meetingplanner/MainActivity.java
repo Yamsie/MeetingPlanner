@@ -64,33 +64,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        switch(v.getId()){
+        switch(v.getId()) {
             case R.id.buttonCon:
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 startActivityForResult(intent, PICK_CONTACT);
-            break;
+                break;
 
             case R.id.buttonTime:
                 FragmentManager fmTime = this.getFragmentManager();
                 timeFragment = new TimePickerFragment(this);
                 timeFragment.show(fmTime, "timePicker");
-            break;
+                break;
 
             case R.id.buttonDate:
                 FragmentManager fmDate = this.getFragmentManager();
                 dateFragment = new DatePickerFragment(this);
                 dateFragment.show(fmDate, "datePicker");
-            break;
+                break;
 
             case R.id.buttonSubmit:
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
                 EditText edu = (EditText) findViewById(R.id.editDur);
-                if(dateFragment != null && timeFragment != null && isValid(en) && isValid(el) && isValid(ea) && isValidNum(edu)) {
+                if (dateFragment != null && timeFragment != null && isValid(en) && isValid(el) && isValid(ea) && isValidNum(edu)) {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
-                    if(compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
+                    if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
                         Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
 
                         try {
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             calintent.setType("vnd.android.cursor.item/event");
                             calintent.putExtra("beginTime", cal.getTimeInMillis());
                             calintent.putExtra("allDay", false);
-                            calintent.putExtra("endTime", cal.getTimeInMillis() + (2 * 60 * 60 * 1000));
+                            calintent.putExtra("endTime", cal.getTimeInMillis() + (Integer.parseInt(edu.getText().toString()) * 60 * 60 * 1000));
                             calintent.putExtra("title", "Meeting with " + en.getText().toString() + "!");
 
                             NumberPicker noPicker;
@@ -118,7 +118,11 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
-                } else if (!isValid(en) || !isValid(el) || !isValid(ea)) {
+                } else if (!isValid(edu)) {
+                    Toast.makeText(this, "Enter a duration less than !", Toast.LENGTH_SHORT).show();
+                } else if (!isValidNum(edu)){
+                    Toast.makeText(this, "Enter a duration!", Toast.LENGTH_SHORT).show();
+                } else if (!isValid(en) || !isValid(el) || !isValid(ea) || !isValid(edu)) {
                     Toast.makeText(this, "Please fill in all fields with alphanumerical characters only!", Toast.LENGTH_SHORT).show();
                 }
                 else Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
