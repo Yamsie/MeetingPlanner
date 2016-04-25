@@ -105,9 +105,17 @@ public class MainActivity extends AppCompatActivity {
                             calintent.putExtra("allDay", false);
                             calintent.putExtra("endTime", cal.getTimeInMillis() + (Integer.parseInt(edu.getText().toString()) * 60 * 60 * 1000));
                             calintent.putExtra("title", "Meeting with " + en.getText().toString() + "!");
+                            calintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            calintent.putExtra("EXIT", true);
 
-                            NumberPicker noPicker;
                             startActivity(calintent);
+                            finish();
+
+                            if (getIntent().getBooleanExtra("EXIT", false))
+                            {
+                                Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
+                            }
+
                         } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
