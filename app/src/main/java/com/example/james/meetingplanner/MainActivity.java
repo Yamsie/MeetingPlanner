@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             returnValue = true;
         }
         return returnValue;
-    }
+    } //Comment 171
 
     private boolean isValidNum(EditText etText) {
         boolean returnValue = false;
