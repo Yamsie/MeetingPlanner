@@ -16,7 +16,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS friends(name VARCHAR);");
         db.execSQL("CREATE TABLE IF NOT EXISTS locations(place VARCHAR);");
         db.execSQL("CREATE TABLE IF NOT EXISTS meetings(name VARCHAR,place VARCHAR,date DATE, when TIME);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS activity(to-do VARCHAR);");
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         //SHOULDN'T BE NEEDED FOR THE PROJECT - TO BE IMPLEMENTED LATER
