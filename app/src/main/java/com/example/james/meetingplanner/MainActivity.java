@@ -87,25 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
-                //getting data to insert into meetings table
-                EditText et1 = (EditText)findViewById(R.id.editCon);
-                EditText et2 = (EditText)findViewById(R.id.textLoc);
-                EditText et3 = (EditText)findViewById(R.id.textTime);
-                EditText et4 = (EditText)findViewById(R.id.textDate);
-                EditText et5 = (EditText)findViewById(R.id.textAct);
-                EditText et6 = (EditText)findViewById(R.id.textDur);
-
-                String name  = et1.getText() . toString();
-                String location = et2.getText() . toString();
-                String time = et3.getText(). toString();
-                String date = et4.getText(). toString();
-                String activity = et5.getText(). toString();
-                String duration = et6.getText(). toString();
-
-                db = dbhelper.getReadableDatabase();
-                String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
-                //attempting to insert into db
-                db.execSQL(insertQuery);
 
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
@@ -114,6 +95,25 @@ public class MainActivity extends AppCompatActivity {
                 if (dateFragment != null && timeFragment != null && isValid(en) && isValid(el) && isValid(ea) && isValidNum(edu)) {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
+
+                    /*
+                    I'm not sure where to put this code but its right I think!
+
+                    String name  = en.getText() . toString();
+                    String location = el.getText() . toString();
+                    String time = et.getText(). toString();
+                    String date = ed.getText(). toString();
+                    String activity = ea.getText(). toString();
+                    String duration = edu.getText(). toString();
+
+                    db = dbhelper.getReadableDatabase();
+                    String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
+                    //attempting to insert into db
+                    db.execSQL(insertQuery);
+                     */
+
+
+
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
                         Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
 
