@@ -12,6 +12,7 @@ public class Menu extends AppCompatActivity {
 
     Button arrange, viewCurrent, viewAll, favs, exit;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

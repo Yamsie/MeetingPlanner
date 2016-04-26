@@ -22,8 +22,8 @@
             android:label="@string/title_activity_add__delete__from__db"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Menu"
-            android:label="@string/title_activity_menu"
+            android:name=".ArrangeMeeting"
+            android:label="ArrangeMeeting"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
