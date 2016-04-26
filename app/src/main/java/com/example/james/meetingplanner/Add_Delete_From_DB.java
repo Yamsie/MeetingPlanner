@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //view databases and add or delete friends/locations/activities - just as a something extra!
@@ -69,7 +70,14 @@ public class Add_Delete_From_DB extends AppCompatActivity {
     }
 
     public void showMeetingsTable(){
-
+        TextView showFriend;
+        TextView showLoc;
+        Cursor c= DB_NAME.rawQuery("SELECT * FROM meetings", null);
+        if(c.moveToFirst())
+        {
+            //showFriend.setText(c.getString(1));
+            //showLoc.setText(c.getString(2));
+        }
     }
 
     public void showActivitiesTable(){
