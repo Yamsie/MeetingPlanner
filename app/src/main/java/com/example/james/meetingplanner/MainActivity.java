@@ -10,6 +10,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.provider.CalendarContract;
 import android.provider.Contacts;
@@ -37,12 +38,15 @@ public class MainActivity extends AppCompatActivity {
     private final int PICK_CONTACT = 1;
     private DialogFragment dateFragment;
     private DialogFragment timeFragment;
+    private DBHelper dbhelper;
+    private SQLiteDatabase db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dbhelper = new DBHelper(this);
     }
 
     @Override
@@ -83,6 +87,26 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
+                //getting data to insert into meetings table
+                EditText et1 = (EditText)findViewById(R.id.editCon);
+                EditText et2 = (EditText)findViewById(R.id.textLoc);
+                EditText et3 = (EditText)findViewById(R.id.textTime);
+                EditText et4 = (EditText)findViewById(R.id.textDate);
+                EditText et5 = (EditText)findViewById(R.id.textAct);
+                EditText et6 = (EditText)findViewById(R.id.textDur);
+
+                String name  = et1.getText() . toString();
+                String location = et2.getText() . toString();
+                String time = et3.getText(). toString();
+                String date = et4.getText(). toString();
+                String activity = et5.getText(). toString();
+                String duration = et6.getText(). toString();
+
+                db = dbhelper.getReadableDatabase();
+                String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
+                //attempting to insert into db
+                db.execSQL(insertQuery);
+
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
