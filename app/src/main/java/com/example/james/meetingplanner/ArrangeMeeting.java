@@ -33,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ArrangeMeeting extends AppCompatActivity {
 
     private final int PICK_CONTACT = 1;
     private DialogFragment dateFragment;
