@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MeetingPlanner</string>
     <string name="title_activity_add__delete__from__db">Add_Delete_From_DB</string>
+    <string name="title_activity_menu">Menu</string>
 </resources>
