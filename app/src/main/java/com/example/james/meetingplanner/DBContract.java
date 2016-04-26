@@ -6,7 +6,7 @@ public class DBContract {
     public static final String DB_NAME = "meetings_planner";
     public static final int DB_VERSION = 1;
 
-    public DBContract() {} //private constructor so it cannot be called accidentally
+    private DBContract() {} //private constructor so it cannot be called accidentally
 
     public static abstract class EntryToTableFriends implements BaseColumns {
         public static final String TABLE = "friends";
@@ -28,7 +28,7 @@ public class DBContract {
         public static final String COL9 = "duration";
     }
 
-    public static abstract class EntryToActivityTable implements BaseColumns{
+    public static abstract class EntryToTableActivities implements BaseColumns{
         public static final String TABLE = "activity";
         public static final String COL8 = "to-do";
     }

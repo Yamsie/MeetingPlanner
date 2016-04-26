@@ -96,26 +96,28 @@ public class MainActivity extends AppCompatActivity {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
 
-                    /*
-                    I'm not sure where to put this code but its right I think!
-
-                    String name  = en.getText() . toString();
-                    String location = el.getText() . toString();
-                    String time = et.getText(). toString();
-                    String date = ed.getText(). toString();
-                    String activity = ea.getText(). toString();
-                    String duration = edu.getText(). toString();
-
-                    db = dbhelper.getReadableDatabase();
-                    String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
-                    //attempting to insert into db
-                    db.execSQL(insertQuery);
-                     */
-
-
-
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
                         Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
+
+                        String name  = en.getText() . toString();
+                        String location = el.getText() . toString();
+                        String time = et.getText(). toString();
+                        String date = ed.getText(). toString();
+                        String activity = ea.getText(). toString();
+                        String duration = edu.getText(). toString();
+
+                        ContentValues values = new ContentValues();
+                        values.put("friend", name);
+                        values.put("location", location);
+                        values.put("time", time);
+                        values.put("date", date);
+                        values.put("activity", activity);
+                        values.put("duration", duration);
+
+                        db = dbhelper.getReadableDatabase();
+                        //String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
+                        //db.execSQL(insertQuery);
+                        db.insert("meetings", null, values);
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");

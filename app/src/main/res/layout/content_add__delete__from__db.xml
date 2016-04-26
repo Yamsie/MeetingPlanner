@@ -40,4 +40,15 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="200dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Add/Delete Place"
+        android:id="@+id/buttonActivity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="250dp" />
+
+
 </RelativeLayout>
