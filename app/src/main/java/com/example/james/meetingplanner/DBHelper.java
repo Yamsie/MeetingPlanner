@@ -9,14 +9,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context){
         super(context,DBContract.DB_NAME,null,1);
     }
-
     @Override
+
     public void onCreate(SQLiteDatabase db) {
         //All table creation in here
         db.execSQL("CREATE TABLE IF NOT EXISTS friends(name VARCHAR);");
         db.execSQL("CREATE TABLE IF NOT EXISTS locations(place VARCHAR);");
         db.execSQL("CREATE TABLE IF NOT EXISTS meetings(name VARCHAR,place VARCHAR,date DATE, when TIME);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS activity(to-do VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS activities(to-do VARCHAR);");
     }
 
     @Override

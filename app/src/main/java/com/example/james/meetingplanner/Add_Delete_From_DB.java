@@ -70,13 +70,13 @@ public class Add_Delete_From_DB extends AppCompatActivity {
     }
 
     public void showMeetingsTable(){
-        TextView showFriend;
-        TextView showLoc;
+        String showFriend;
+        String showLoc;
         Cursor c= DB_NAME.rawQuery("SELECT * FROM meetings", null);
         if(c.moveToFirst())
         {
-            //showFriend.setText(c.getString(1));
-            //showLoc.setText(c.getString(2));
+            showFriend = c.getString(1);
+            showLoc = c.getString(2);
         }
     }
 

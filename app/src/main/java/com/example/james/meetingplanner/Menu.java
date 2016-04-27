@@ -31,8 +31,24 @@ public class Menu extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        Intent intent = new Intent(this, ArrangeMeeting.class);
+        Intent intent = null;
+        switch(v.getId())
+        {
+            case R.id.arrange:
+                intent = new Intent(this, ArrangeMeeting.class);
+
+            case R.id.viewCurrent:
+                intent = new Intent(this, ArrangeMeeting.class);
+
+            case R.id.viewPast:
+                intent = new Intent(this, ArrangeMeeting.class);
+
+            case R.id.favs:
+                intent = new Intent(this, ArrangeMeeting.class);
+
+            case R.id.exit:
+                intent = new Intent(this, ArrangeMeeting.class);
+        }
         startActivity(intent);
     }
-
 }
