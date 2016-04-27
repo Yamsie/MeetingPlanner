@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 //view databases and add or delete friends/locations/activities - just as a something extra!
 public class Add_Delete_From_DB extends AppCompatActivity {
@@ -22,13 +23,14 @@ public class Add_Delete_From_DB extends AppCompatActivity {
     private DBHelper dbhelper;
     private SQLiteDatabase DB_NAME;
     String table;
+    Intent i = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add__delete__from__db);
+        setContentView(R.layout.content_add__delete__from__db);
         dbhelper = new DBHelper(this);
-        DB_NAME = dbhelper.getReadableDatabase();
+        //DB_NAME = dbhelper.getReadableDatabase();
 
 
         View.OnClickListener handler = new View.OnClickListener() {
@@ -40,6 +42,7 @@ public class Add_Delete_From_DB extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "You Clicked Place Button!", Toast.LENGTH_SHORT).show();
                         table = DBContract.EntryToTableLocations.TABLE;
                         showLocationsTable();
+
                         break;
 
                     case R.id.buttonFriend:
@@ -51,7 +54,7 @@ public class Add_Delete_From_DB extends AppCompatActivity {
                     case R.id.buttonMeeting:
                         Toast.makeText(getBaseContext(), "You Clicked Meeting Button!", Toast.LENGTH_SHORT).show();
                         table = DBContract.EntryToTableMeetings.TABLE;
-                        showMeetingsTable();
+                        showMeetingsTable(dbhelper);
                         break;
 
                     case R.id.buttonActivity:
@@ -69,15 +72,15 @@ public class Add_Delete_From_DB extends AppCompatActivity {
         findViewById(R.id.buttonActivity).setOnClickListener(handler);
     }
 
-    public void showMeetingsTable(){
-        String showFriend;
+    public void showMeetingsTable(DBHelper dbhelper){
+        /*String showFriend;
         String showLoc;
-        Cursor c= DB_NAME.rawQuery("SELECT * FROM meetings", null);
+        Cursor c= dbhelper.DB_NAME.rawQuery("SELECT * FROM meetings", null);
         if(c.moveToFirst())
         {
             showFriend = c.getString(1);
             showLoc = c.getString(2);
-        }
+        }*/
     }
 
     public void showActivitiesTable(){

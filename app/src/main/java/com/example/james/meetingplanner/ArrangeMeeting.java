@@ -20,23 +20,23 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import android.util.Log;
 
 
 public class ArrangeMeeting extends AppCompatActivity {
 
+    private static final String LOG = ArrangeMeeting.class.getName();
     private final int PICK_CONTACT = 1;
     private final int START_CAL = 2;
     private DialogFragment dateFragment;
     private DialogFragment timeFragment;
     private DBHelper dbhelper;
-    private SQLiteDatabase db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arrange_meeting);
-        dbhelper = new DBHelper(this);
+        dbhelper = DBHelper.getInstance(this);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
-
+                Toast.makeText(this, "ddfdddddddd", Toast.LENGTH_SHORT).show();
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
@@ -93,6 +93,8 @@ public class ArrangeMeeting extends AppCompatActivity {
                 if (dateFragment != null && timeFragment != null && isValid(en) && isValid(el) && isValid(ea) && isValidNum(edu)) {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
+                    Toast.makeText(this, "fffffffff", Toast.LENGTH_SHORT).show();
+
 
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
                         Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
@@ -104,18 +106,8 @@ public class ArrangeMeeting extends AppCompatActivity {
                         String activity = ea.getText(). toString() . trim();
                         String duration = edu.getText(). toString() . trim();
 
-                        ContentValues values = new ContentValues();
-                        values.put("friend", name);
-                        values.put("location", location);
-                        values.put("time", time);
-                        values.put("date", date);
-                        values.put("activity", activity);
-                        values.put("duration", duration);
-
-                        //db = dbhelper.getReadableDatabase();
-                        //String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
-                        //db.execSQL(insertQuery);
-                        //db.insert("meetings", null, values);
+                        Meetings m1 = new Meetings(name, location, time, date, activity, duration);
+                        dbhelper.addMeetings(m1, this);
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -137,8 +129,9 @@ public class ArrangeMeeting extends AppCompatActivity {
                             startActivityForResult(calintent, START_CAL);
                             //Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
                             //finish();
-                            } catch (ParseException e) {
-                            Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                Log.e(LOG, "unexpected error");
+                            //Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
 
                     } else {

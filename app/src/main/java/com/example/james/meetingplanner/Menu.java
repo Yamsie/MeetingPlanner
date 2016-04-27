@@ -8,46 +8,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Menu extends AppCompatActivity {
-
-    Button arrange, viewCurrent, viewAll, favs, exit;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     public void onClick(View v) {
-        Intent intent = null;
+        Intent intent=null;
         switch(v.getId())
         {
             case R.id.arrange:
                 intent = new Intent(this, ArrangeMeeting.class);
 
             case R.id.viewCurrent:
-                intent = new Intent(this, Add_Delete_From_DB.class);
+                //intent = new Intent(this, ViewFutureMeetings.class);
 
             case R.id.viewPast:
-                intent = new Intent(this, ArrangeMeeting.class);
+                //intent = new Intent(this, ArrangeMeeting.class);
 
             case R.id.favs:
-                intent = new Intent(this, ArrangeMeeting.class);
+                //intent = new Intent(this, ArrangeMeeting.class);
 
             case R.id.exit:
-                intent = new Intent(this, ArrangeMeeting.class);
+                //intent = new Intent(this, ArrangeMeeting.class);
+
+            default:
+                Toast.makeText(this, "options not working", Toast.LENGTH_SHORT).show();
         }
         startActivity(intent);
     }

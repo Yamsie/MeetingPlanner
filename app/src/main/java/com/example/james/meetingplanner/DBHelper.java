@@ -3,20 +3,37 @@ package com.example.james.meetingplanner;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.content.ContentValues;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public DBHelper(Context context){
-        super(context,DBContract.DB_NAME,null,1);
-    }
-    @Override
+    public static final String DB_NAME = "meetings_planner";
+    public static final int DB_VERSION = 1;
+    public static final String mTable = "meetings";
+    private static final String CREATE_TABLE_MEETINGS = "CREATE TABLE IF NOT EXISTS" + mTable + "(name VARCHAR,place VARCHAR,date DATE, when TIME);";
 
+    public static final String COL1 = "friend";
+    public static final String COL2 = "location";
+    public static final String COL3 = "time";
+    public static final String COL4 = "date";
+    public static final String COL5 = "activity";
+    public static final String COL9 = "duration";
+
+    private static DBHelper instance;
+    public static DBHelper getInstance(Context context) {
+        if (instance == null) {
+            instance = new DBHelper(context.getApplicationContext());
+        }
+        return instance;
+    }
+
+    public DBHelper(Context context){
+        super(context,DB_NAME,null,1);
+    }
+
+    @Override
     public void onCreate(SQLiteDatabase db) {
-        //All table creation in here
-        db.execSQL("CREATE TABLE IF NOT EXISTS friends(name VARCHAR);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS locations(place VARCHAR);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS meetings(name VARCHAR,place VARCHAR,date DATE, when TIME);");
-        db.execSQL("CREATE TABLE IF NOT EXISTS activities(to-do VARCHAR);");
+        db.execSQL(CREATE_TABLE_MEETINGS);
     }
 
     @Override
@@ -25,4 +42,15 @@ public class DBHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS ");
     }
 
+    public void addMeetings(Meetings m, Context c){
+        SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL1, m.getFriend());
+        values.put(COL2, m.getLocation());
+        values.put(COL3, m.getTime());
+        values.put(COL4, m.getDate());
+        values.put(COL5, m.getActivity());
+        values.put(COL9, m.getDuration());
+        db.insert("meetings", null, values);
+    }
 }
