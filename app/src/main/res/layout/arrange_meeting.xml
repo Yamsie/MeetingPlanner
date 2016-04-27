@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.james.meetingplanner.MainActivity">
+    tools:context="com.example.james.meetingplanner.ArrangeMeeting">
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
     <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:hint="Enter Name"
         android:ems="10"
         android:id="@+id/editCon"
@@ -123,6 +123,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:hint="Location"
+        android:inputType="textCapWords"
         android:id="@+id/editLoc"
         android:singleLine="true"
         android:layout_alignParentTop="true"
@@ -133,6 +134,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:hint="Activity"
+        android:inputType="textCapWords"
         android:id="@+id/editAct"
         android:singleLine="true"
         android:layout_alignParentTop="true"

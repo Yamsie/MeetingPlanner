@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.EventLog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import java.util.Date;
 public class ArrangeMeeting extends AppCompatActivity {
 
     private final int PICK_CONTACT = 1;
+    private final int START_CAL = 2;
     private DialogFragment dateFragment;
     private DialogFragment timeFragment;
     private DBHelper dbhelper;
@@ -52,9 +54,12 @@ public class ArrangeMeeting extends AppCompatActivity {
                     et.setText(name);
                 }
             }
-        } else if(resultCode == 1) {
-            Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
-            setResult(resultCode);
+        } else if(reqCode == START_CAL) {
+            Toast.makeText(this, "Reached Start_cal", Toast.LENGTH_LONG).show();
+            if(RESULT_OK == resultCode) {
+                Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
+                setResult(resultCode);
+            }
         } else {
             Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
         }
@@ -92,12 +97,12 @@ public class ArrangeMeeting extends AppCompatActivity {
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
                         Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
 
-                        String name  = en.getText() . toString();
-                        String location = el.getText() . toString();
-                        String time = et.getText(). toString();
-                        String date = ed.getText(). toString();
-                        String activity = ea.getText(). toString();
-                        String duration = edu.getText(). toString();
+                        String name  = en.getText() . toString() . trim();
+                        String location = el.getText() . toString() . trim();
+                        String time = et.getText(). toString() . trim();
+                        String date = ed.getText(). toString() . trim();
+                        String activity = ea.getText(). toString() . trim();
+                        String duration = edu.getText(). toString() . trim();
 
                         ContentValues values = new ContentValues();
                         values.put("friend", name);
@@ -123,17 +128,16 @@ public class ArrangeMeeting extends AppCompatActivity {
                             calintent.putExtra("beginTime", cal.getTimeInMillis());
                             calintent.putExtra("allDay", false);
                             calintent.putExtra("endTime", cal.getTimeInMillis() + (Integer.parseInt(edu.getText().toString()) * 60 * 60 * 1000));
-                            calintent.putExtra("title", "Meeting with " + en.getText().toString() + "!");
+                            calintent.putExtra("title", activity + " with " + en.getText().toString() + "!");
+                            calintent.putExtra("eventLocation", location);
+                            calintent.putExtra("description", "You're meeting with " + name + " at " + time + " on " + date + " for " + activity + ".");
                             calintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             calintent.putExtra("EXIT", true);
 
-                            int requestCode = 0;
-                            startActivityForResult(calintent, requestCode);
+                            startActivityForResult(calintent, START_CAL);
                             //Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
                             //finish();
-
-
-                        } catch (ParseException e) {
+                            } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
 
@@ -180,7 +184,7 @@ public class ArrangeMeeting extends AppCompatActivity {
 
     private boolean isValid(EditText etText) {
         boolean returnValue = false;
-        String regex = "[A-Za-z0-9]+";
+        String regex = "[A-Za-z0-9 ]+";
         if(etText.getText().toString().matches(regex) && etText.getText().toString().trim().length() > 0) {
             returnValue = true;
         }
