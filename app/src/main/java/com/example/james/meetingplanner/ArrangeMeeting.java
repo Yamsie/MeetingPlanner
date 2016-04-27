@@ -60,17 +60,6 @@ public class ArrangeMeeting extends AppCompatActivity {
         }
     }
 
-    /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("CheckStartActivity", "onActivityResult and resultCode = " + resultCode);
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1) {
-            Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
-        }
-    } */
-
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.buttonCon:
@@ -118,10 +107,10 @@ public class ArrangeMeeting extends AppCompatActivity {
                         values.put("activity", activity);
                         values.put("duration", duration);
 
-                        db = dbhelper.getReadableDatabase();
+                        //db = dbhelper.getReadableDatabase();
                         //String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
                         //db.execSQL(insertQuery);
-                        db.insert("meetings", null, values);
+                        //db.insert("meetings", null, values);
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -140,8 +129,8 @@ public class ArrangeMeeting extends AppCompatActivity {
 
                             int requestCode = 0;
                             startActivityForResult(calintent, requestCode);
-                            Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
-                            finish();
+                            //Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
+                            //finish();
 
 
                         } catch (ParseException e) {
