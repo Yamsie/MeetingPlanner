@@ -38,7 +38,7 @@ public class Menu extends AppCompatActivity {
                 intent = new Intent(this, ArrangeMeeting.class);
 
             case R.id.viewCurrent:
-                intent = new Intent(this, ArrangeMeeting.class);
+                intent = new Intent(this, Add_Delete_From_DB.class);
 
             case R.id.viewPast:
                 intent = new Intent(this, ArrangeMeeting.class);
