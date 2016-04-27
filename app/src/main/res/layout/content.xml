@@ -17,6 +17,7 @@
         android:id="@+id/imageButton"
         android:src = "@drawable/blockbut"
         android:adjustViewBounds="true"
+        android:onClick="onClick"
         android:padding="0dp"
         android:scaleType="fitXY"
         android:background="@android:color/transparent"

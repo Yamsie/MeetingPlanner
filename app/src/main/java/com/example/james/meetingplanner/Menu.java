@@ -1,5 +1,6 @@
 package com.example.james.meetingplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,11 @@ public class Menu extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void onClick(View v) {
+        Intent intent = new Intent(this, ArrangeMeeting.class);
+        startActivity(intent);
     }
 
 }
