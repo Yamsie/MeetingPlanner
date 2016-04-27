@@ -52,8 +52,24 @@ public class ArrangeMeeting extends AppCompatActivity {
                     et.setText(name);
                 }
             }
+        } else if(resultCode == 1) {
+            Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
+            setResult(resultCode);
+        } else {
+            Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
         }
     }
+
+    /* @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("CheckStartActivity", "onActivityResult and resultCode = " + resultCode);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1) {
+            Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
+        }
+    } */
 
     public void onClick(View v) {
         switch(v.getId()) {
@@ -122,13 +138,11 @@ public class ArrangeMeeting extends AppCompatActivity {
                             calintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             calintent.putExtra("EXIT", true);
 
-                            startActivity(calintent);
+                            int requestCode = 0;
+                            startActivityForResult(calintent, requestCode);
+                            Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
                             finish();
 
-                            if (getIntent().getBooleanExtra("EXIT", false))
-                            {
-                                Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
-                            }
 
                         } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
@@ -182,7 +196,7 @@ public class ArrangeMeeting extends AppCompatActivity {
             returnValue = true;
         }
         return returnValue;
-    } //Comment 171
+    }
 
     private boolean isValidNum(EditText etText) {
         boolean returnValue = false;
