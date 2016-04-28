@@ -82,4 +82,17 @@
         android:id="@+id/addLoc"
         android:layout_above="@+id/delFavLocs"
         android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:id="@+id/listAct"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </ListView>
+
+    <ListView
+        android:id="@+id/listLoc"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </ListView>
+
 </RelativeLayout>
