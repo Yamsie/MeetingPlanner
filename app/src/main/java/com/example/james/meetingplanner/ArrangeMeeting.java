@@ -112,6 +112,13 @@ public class ArrangeMeeting extends AppCompatActivity {
                         values.put("activity", activity);
                         values.put("duration", duration);
 
+                        Meetings m1 = new Meetings(name, location, time, date, activity, duration);
+                        //Intent i = new Intent(this, IntentServiceManager.class);
+                        //i.putExtra(m1);
+                        //startService(i);
+                        dbhelper.addMeetings(m1, this);
+                        Toast.makeText(this, "added to db", Toast.LENGTH_LONG).show();
+
                         //db = dbhelper.getReadableDatabase();
                         //String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
                         //db.execSQL(insertQuery);
@@ -137,7 +144,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                             startActivityForResult(calintent, START_CAL);
                             //Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
                             //finish();
-                            } catch (ParseException e) {
+                        } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
 
