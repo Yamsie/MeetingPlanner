@@ -15,6 +15,6 @@ public class Favourites extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        Toast.makeText(this, "Something happened...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Something happened...", Toast.LENGTH_SHORT).show(); //blah
     }
 }
