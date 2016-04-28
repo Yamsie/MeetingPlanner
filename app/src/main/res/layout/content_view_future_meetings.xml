@@ -12,7 +12,22 @@
     tools:context="com.example.james.meetingplanner.ViewFutureMeetings"
     tools:showIn="@layout/activity_view_future_meetings">
 
-    <TextView
+    <ListView
+        android:id="@+id/list_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:choiceMode="multipleChoice" />
+
+    <Button
+        android:id="@+id/task_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="View Details" />
+
+
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -63,6 +78,6 @@
         android:id="@+id/textDisplayDuration"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="300dp" />
+        android:layout_marginTop="300dp" />-->
 
 </RelativeLayout>

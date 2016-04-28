@@ -37,7 +37,7 @@ public class ArrangeMeeting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arrange_meeting);
-        dbhelper = new DBHelper(this);
+        dbhelper = DBHelper.getInstance(this);
     }
 
     @Override
