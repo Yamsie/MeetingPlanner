@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.EventLog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -118,16 +117,8 @@ public class ArrangeMeeting extends AppCompatActivity {
                         values.put("duration", duration);
 
                         Meetings m1 = new Meetings(name, location, time, date, activity, duration);
-                        //Intent i = new Intent(this, IntentServiceManager.class);
-                        //i.putExtra(m1);
-                        //startService(i);
                         dbhelper.addMeetings(m1, this);
-                        Toast.makeText(this, "added to db", Toast.LENGTH_LONG).show();
-
-                        //db = dbhelper.getReadableDatabase();
-                        //String insertQuery = "INSERT INTO meetings VALUES ('name', 'location', 'time', 'date', 'activity', 'duration');";
-                        //db.execSQL(insertQuery);
-                        //db.insert("meetings", null, values);
+                        Toast.makeText(this, "Saved Locally", Toast.LENGTH_LONG).show();
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");

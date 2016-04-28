@@ -22,13 +22,13 @@ public class ViewFutureMeetings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_future_meetings);
-        Toast.makeText(this, "got this far", Toast.LENGTH_LONG).show();
         dbhelper = DBHelper.getInstance(this);
-        db = DBHelper.getInstance(this).getWritableDatabase();
+        db = dbhelper.getWritableDatabase();
 
         Cursor c = db.rawQuery("SELECT * FROM meetings", null);
+        int num = c.getCount();
+        Toast.makeText(this, num + " row in meetings table", Toast.LENGTH_LONG).show();
         if (c.moveToFirst()) {
-            Toast.makeText(this, "cursor worked", Toast.LENGTH_LONG).show();
             name = c.getString(c.getColumnIndex(DBHelper.COL1));
             loc = c.getString(c.getColumnIndex(DBHelper.COL2));
             time = c.getString(c.getColumnIndex(DBHelper.COL3));
@@ -39,7 +39,17 @@ public class ViewFutureMeetings extends AppCompatActivity {
         }
 
         TextView tdf = (TextView) findViewById(R.id.textDisplayFriend);
+        TextView tdl = (TextView) findViewById(R.id.textDisplayLocation);
+        TextView tdt = (TextView) findViewById(R.id.textDisplayTime);
+        TextView tdd = (TextView) findViewById(R.id.textDisplayDate);
+        TextView tdact = (TextView) findViewById(R.id.textDisplayActivity);
+        TextView tddur = (TextView) findViewById(R.id.textDisplayDuration);
+
         tdf.setText(name);
-        Toast.makeText(this, "my name is " + name, Toast.LENGTH_LONG).show();
+        tdl.setText(loc);
+        tdt.setText(time);
+        tdd.setText(date);
+        tdact.setText(act);
+        tddur.setText(dur);
     }
 }
