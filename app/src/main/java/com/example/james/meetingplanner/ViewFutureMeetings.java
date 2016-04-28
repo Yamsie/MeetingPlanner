@@ -19,7 +19,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_future_meetings);
+        //setContentView(R.layout.activity_view_future_meetings);
         Toast.makeText(this, "got this far", Toast.LENGTH_LONG).show();
         dbhelper = new DBHelper(this);
         db = dbhelper.getReadableDatabase();
