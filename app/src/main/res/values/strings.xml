@@ -3,4 +3,5 @@
     <string name="title_activity_add__delete__from__db">Add_Delete_From_DB</string>
     <string name="title_activity_menu">Menu</string>
     <string name="title_activity_view_future_meetings">ViewFutureMeetings</string>
+    <string name="title_activity_view_past_meetings">ViewPastMeetings</string>
 </resources>

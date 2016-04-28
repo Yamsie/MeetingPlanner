@@ -38,6 +38,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.james.meetingplanner.Menu" />
         </activity>
+        <activity
+            android:name=".ViewPastMeetings"
+            android:label="@string/title_activity_view_past_meetings"
+            android:parentActivityName=".Menu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.james.meetingplanner.Menu" />
+        </activity>
     </application>
 
 </manifest>

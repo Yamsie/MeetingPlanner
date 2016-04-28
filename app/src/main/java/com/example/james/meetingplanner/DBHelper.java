@@ -62,14 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COL4, m.getDate());
         values.put(COL5, m.getActivity());
         values.put(COL9, m.getDuration());
-        /*
-        String f =m.getFriend();
-        String l = m.getLocation();
-        String t = m.getTime();
-        String date = m.getDate();
-        String act = m.getActivity();
-        String dur = m.getDuration();
-        */
+
         db.insert("meetings", null, values);
         db.close();
     }

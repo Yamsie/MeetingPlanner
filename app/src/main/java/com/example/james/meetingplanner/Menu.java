@@ -32,7 +32,7 @@ public class Menu extends AppCompatActivity {
                 break;
 
             case R.id.viewPast:
-                Intent pastintent = new Intent(this, ArrangeMeeting.class);
+                Intent pastintent = new Intent(this, ViewPastMeetings.class);
                 startActivity(pastintent);
                 break;
 
@@ -40,7 +40,6 @@ public class Menu extends AppCompatActivity {
                 Intent favintent = new Intent(this, Favourites.class);
                 startActivity(favintent);
                 break;
-
 
         }
     }
