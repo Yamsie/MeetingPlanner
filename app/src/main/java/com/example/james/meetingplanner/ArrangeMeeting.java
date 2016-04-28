@@ -1,10 +1,8 @@
 package com.example.james.meetingplanner;
 
-import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -34,7 +32,7 @@ public class ArrangeMeeting extends AppCompatActivity {
     private SQLiteDatabase db;
 
 
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arrange_meeting);
@@ -57,13 +55,13 @@ public class ArrangeMeeting extends AppCompatActivity {
                 }
             }
         } else if(reqCode == START_CAL) {
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
+            Toast.makeText(this, "Reached Start_cal", Toast.LENGTH_LONG).show();
+            if(RESULT_OK == resultCode) {
+                Toast.makeText(this, "Pass", Toast.LENGTH_LONG).show();
+                setResult(resultCode);
+            }
         } else {
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
+            Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -97,6 +95,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                     TextView et = (TextView) findViewById(R.id.editTime);
 
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
+                        Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
 
                         String name  = en.getText() . toString() . trim();
                         String location = el.getText() . toString() . trim();
@@ -124,7 +123,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                             Calendar cal = Calendar.getInstance();
                             cal.setTime(inDate);
 
-                            final Intent calintent = new Intent(Intent.ACTION_EDIT);
+                            Intent calintent = new Intent(Intent.ACTION_EDIT);
                             calintent.setType("vnd.android.cursor.item/event");
                             calintent.putExtra("beginTime", cal.getTimeInMillis());
                             calintent.putExtra("allDay", false);
@@ -135,26 +134,9 @@ public class ArrangeMeeting extends AppCompatActivity {
                             calintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             calintent.putExtra("EXIT", true);
 
-                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    switch (which){
-                                        case DialogInterface.BUTTON_POSITIVE:
-                                            startActivityForResult(calintent, START_CAL);
-                                            break;
-
-                                        case DialogInterface.BUTTON_NEGATIVE:
-                                            Intent intent = getIntent();
-                                            finish();
-                                            startActivity(intent);
-                                            break;
-                                    }
-                                }
-                            };
-
-                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                            builder.setMessage("Meeting Saved!\nWould you like to save this to your Google Calendar?").setPositiveButton("Yes", dialogClickListener)
-                                    .setNegativeButton("No", dialogClickListener).show();
+                            startActivityForResult(calintent, START_CAL);
+                            //Toast.makeText(this, "Calendar has been exited!", Toast.LENGTH_SHORT).show();
+                            //finish();
                             } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }

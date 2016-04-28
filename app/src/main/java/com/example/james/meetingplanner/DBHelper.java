@@ -10,7 +10,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "meetings_planner";
     public static final int DB_VERSION = 1;
     public static final String mTable = "meetings";
-    private static final String CREATE_TABLE_MEETINGS = "CREATE TABLE IF NOT EXISTS" + mTable + "(name VARCHAR,place VARCHAR,date DATE, when TIME);";
+    private static final String CREATE_TABLE_MEETINGS = "CREATE TABLE IF NOT EXISTS " + mTable + " (name VARCHAR,place VARCHAR,date DATE, whenTime TIME);";
 
     public static final String COL1 = "friend";
     public static final String COL2 = "location";
@@ -19,6 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL5 = "activity";
     public static final String COL9 = "duration";
 
+    //singleton class
     private static DBHelper instance;
     public static DBHelper getInstance(Context context) {
         if (instance == null) {
@@ -52,5 +53,6 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COL5, m.getActivity());
         values.put(COL9, m.getDuration());
         db.insert("meetings", null, values);
+        db.close();
     }
 }

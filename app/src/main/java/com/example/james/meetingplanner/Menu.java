@@ -2,17 +2,12 @@ package com.example.james.meetingplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 public class Menu extends AppCompatActivity {
-
-    //Button arrange, viewCurrent, viewAll, favs, exit;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +24,7 @@ public class Menu extends AppCompatActivity {
                 break;
 
             case R.id.viewCurrent:
-                Intent currintent = new Intent(this, Add_Delete_From_DB.class);
+                Intent currintent = new Intent(this, ViewFutureMeetings.class);
                 startActivity(currintent);
                 break;
 
