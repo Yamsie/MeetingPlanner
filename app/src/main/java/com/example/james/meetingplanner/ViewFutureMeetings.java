@@ -40,6 +40,6 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
         TextView tdf = (TextView) findViewById(R.id.textDisplayFriend);
         tdf.setText(name);
-        Toast.makeText(this, "xxxxxxxxxxxx", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "my name is " + name, Toast.LENGTH_LONG).show();
     }
 }
