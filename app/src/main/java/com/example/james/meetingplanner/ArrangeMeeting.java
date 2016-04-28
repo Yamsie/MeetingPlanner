@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class ArrangeMeeting extends AppCompatActivity {
     private SQLiteDatabase db;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public class ArrangeMeeting extends AppCompatActivity {
             if(resultCode == AppCompatActivity.RESULT_OK) {
                 Uri contactData = data.getData();
                 Cursor c = getContentResolver().query(contactData, null, null, null, null);
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.paddyremix);
+                mp.start();
 
                 if(c.moveToFirst()) {
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));

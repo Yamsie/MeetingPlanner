@@ -1,6 +1,7 @@
 package com.example.james.meetingplanner;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,8 @@ public class Menu extends AppCompatActivity {
         switch(v.getId())
         {
             case R.id.arrange:
+              //  MediaPlayer mp = MediaPlayer.create(this, R.raw.paddyremix);
+               // mp.start();
                 Intent arrintent = new Intent(this, ArrangeMeeting.class);
                 startActivity(arrintent);
                 break;
