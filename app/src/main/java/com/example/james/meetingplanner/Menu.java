@@ -43,10 +43,7 @@ public class Menu extends AppCompatActivity {
                 startActivity(favintent);
                 break;
 
-            case R.id.exit:
-                Intent exitintent = new Intent(this, ArrangeMeeting.class);
-                startActivity(exitintent);
-                break;
+
         }
     }
 }
