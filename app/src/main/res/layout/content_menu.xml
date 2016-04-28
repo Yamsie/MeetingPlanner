@@ -63,6 +63,6 @@
         android:scaleType="fitXY"
         android:background = "@drawable/aboutus"
         android:padding="0dp" />
-  <!--poop -->
+  <!--poop m-->
 
 </RelativeLayout>
