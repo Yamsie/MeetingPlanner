@@ -20,6 +20,8 @@ public class ViewFutureMeetings extends AppCompatActivity {
     private DBHelper dbhelper;
     private SQLiteDatabase db;
     private ArrayList <String> friends;
+    private ListView lol;
+
 
     String name, loc, time, date, act, dur, data;
 
@@ -29,6 +31,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         setContentView(R.layout.activity_view_future_meetings);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
+        lol = (ListView) findViewById(R.id.list_person);
 
 
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
@@ -41,6 +44,13 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 data += c.getString(c.getColumnIndex(DBHelper.COL4));
                 friends.add(data);
             }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+            this,
+                android.R.layout.simple_list_item_1,friends);
+        lol.setAdapter(arrayAdapter);
+
+
         c.close();
         db.close();
     }
