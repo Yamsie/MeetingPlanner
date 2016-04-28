@@ -110,6 +110,7 @@ public class DBHelper extends SQLiteOpenHelper {
         int count = cur.getCount();
         String[] colNames = cur.getColumnNames();
         db.close();
+        cur.close();
         return colNames;
     }
 
@@ -117,22 +118,37 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM locations", null);
         db.close();
+        cur.close();
     }
 
 
-    private void searchActivities(String act) { //SET RETURN TYPE TO BOOLEAN!
-        boolean returnVal;
-        //Searches table for String.
-        //Can be used for checking if a value exists in the table before adding or deleting it.
-
-
+    private boolean searchActivities(String act) {
+    boolean returnVal;
+    SQLiteDatabase db = instance.getReadableDatabase();
+    String query = "Select * from activities where activity = " + act + ";";
+    Cursor c = db.rawQuery(query, null);
+    if(c == null){
+        returnVal = false;
+    }
+    else {
+        returnVal = true;
+    }
+    c.close();
+    return returnVal;
     }
 
-        private void searchLocations(String act) { //SET RETURN TYPE TO BOOLEAN!
-        boolean returnVal;
-        //Searches table for String.
-        //Can be used for checking if a value exists in the table before adding or deleting it.
-
+    private boolean searchLocations(String loc) {
+    boolean returnVal;
+    SQLiteDatabase db = instance.getReadableDatabase();
+    String query = "Select * from locations where location = " + loc + ";";
+    Cursor c = db.rawQuery(query, null);
+    if(c == null){
+        returnVal = false;
     }
-
+    else {
+        returnVal = true;
+    }
+    c.close();
+    return returnVal;
+    }
 }

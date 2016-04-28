@@ -1,6 +1,7 @@
 package com.example.james.meetingplanner;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ public class Favourites extends AppCompatActivity {
 
     private DBHelper dbhelper;
     private SQLiteDatabase db;
+    String pattern = "[0-9a-zA-Z ]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,14 @@ public class Favourites extends AppCompatActivity {
                   only AND spaces (or [0-9a-zA-Z ]+)
                 - Add it to database. Check if it exists in table.
                  */
-
                 EditText afa = (EditText) findViewById(R.id.addAct);
-                dbhelper.addActivities(afa.getText().toString(), this);
+                String input = afa.getText().toString();
+                if(input.matches(pattern)) {
+                    dbhelper.addActivities(input, this);
+                }
+                else{
+                    Toast.makeText(this, "Error, invalid input",Toast.LENGTH_LONG).show();
+                }
                 break;
 
             case R.id.delFavActs:

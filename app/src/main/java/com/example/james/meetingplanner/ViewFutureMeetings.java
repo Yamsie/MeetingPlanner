@@ -30,16 +30,17 @@ public class ViewFutureMeetings extends AppCompatActivity {
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
-
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE DATE > date('now') AND time > CURRENT_TIME", null);
         int num = c.getCount();
         Toast.makeText(this, num + " row in meetings table", Toast.LENGTH_LONG).show();
-        while (c.moveToNext()) {
+        if(c.moveToFirst()) {
+            while (c.moveToNext()) {
                 data = "";
                 data = c.getString(c.getColumnIndex(DBHelper.COL1));
                 data += ", ";
                 data += c.getString(c.getColumnIndex(DBHelper.COL4));
                 friends.add(data);
+                }
             }
         c.close();
         db.close();
