@@ -14,8 +14,8 @@
     tools:showIn="@layout/activity_menu">
 
     <Button
-        android:layout_width="400dp"
-        android:layout_height="220dp"
+        android:layout_width="4000dp"
+        android:layout_height="200dp"
         android:id="@+id/arrange"
         android:background = "@drawable/aam"
         android:adjustViewBounds="true"
