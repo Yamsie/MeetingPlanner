@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +36,25 @@ public class Favourites extends AppCompatActivity {
                 /*
                 Present list with all of users favourite activities saved to DB.
                  */
+                Button button = (Button) v;
+                Button buttonAddAct = (Button) findViewById(R.id.editFavActs);
+                Button buttonDelAct = (Button) findViewById(R.id.delFavActs);
+                Button buttonViewLoc = (Button) findViewById(R.id.viewFavLocs);
+                Button buttonAddLoc = (Button) findViewById(R.id.editFavLocs);
+                Button buttonDelLoc = (Button) findViewById(R.id.delFavLocs);
+                TextView addAct = (TextView) findViewById(R.id.addAct);
+                TextView addLoc = (TextView) findViewById(R.id.addLoc);
+
+                button.setVisibility(View.INVISIBLE);
+                buttonAddAct.setVisibility(View.INVISIBLE);
+                buttonDelAct.setVisibility(View.INVISIBLE);
+                buttonViewLoc.setVisibility(View.INVISIBLE);
+                buttonDelLoc.setVisibility(View.INVISIBLE);
+                buttonAddLoc.setVisibility(View.INVISIBLE);
+                addAct.setVisibility(View.INVISIBLE);
+                addLoc.setVisibility(View.INVISIBLE);
+
+
                 final ListView listView = (ListView) findViewById(R.id.listAct);
 
                 ArrayList<String> data = dbhelper.viewActivities(this);
