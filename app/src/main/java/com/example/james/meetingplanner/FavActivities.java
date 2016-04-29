@@ -78,7 +78,7 @@ public class FavActivities extends AppCompatActivity {
             }
         });
     }
-
+/*
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.add:
@@ -109,6 +109,6 @@ public class FavActivities extends AppCompatActivity {
 
                 break;
         }
-    }
+    }*/
 
 }
