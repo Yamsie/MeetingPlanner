@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -72,6 +73,15 @@ public class FavActivities extends AppCompatActivity {
                         .setNegativeButton("No", dialogClickListener).show();
             }
         });
+    }
+
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.addNew:
+                //EditText et = (EditText) findViewById(R.id.addNew);
+
+                break;
+        }
     }
 
 }

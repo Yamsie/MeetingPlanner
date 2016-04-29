@@ -9,9 +9,69 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.james.meetingplanner.FavActivities">
 
+    <!-- <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/addNew"
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textColor="#000000"
+            android:layout_weight="1"
+            android:textSize="6pt"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Add"
+            android:id="@+id/button"
+            android:layout_gravity="right"
+            android:layout_weight="1" />
+    </LinearLayout> -->
+
+    <LinearLayout
+        android:id="@+id/login_layout_inner_ipAddr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="#CEE6F0"
+        android:weightSum="6"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/login_text_ipAddr"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:inputType="text"
+            android:layout_gravity=""
+            android:textSize="5pt" />
+
+        <Button
+            android:style="?android:attr/buttonStyleSmall"
+            android:id="@+id/login_btn_ipAddr"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Add"
+            android:layout_gravity="right"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
     <ListView
         android:id="@+id/listAct"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:drawSelectorOnTop="true"
+        android:layout_above="@+id/login_layout_inner_ipAddr">
     </ListView>
 </RelativeLayout>
