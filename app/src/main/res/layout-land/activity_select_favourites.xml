@@ -10,26 +10,26 @@
     tools:context="com.example.james.meetingplanner.SelectFavourites">
 
     <Button
-        android:layout_width="400dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:background = "@drawable/favac"
         android:adjustViewBounds="true"
         android:id="@+id/selAct"
         android:onClick="onClick"
         android:scaleType="fitXY"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+         />
 
     <Button
-        android:layout_width="400dp"
-        android:layout_height="220dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:background = "@drawable/favloc"
         android:adjustViewBounds="true"
-        android:layout_below="@+id/selAct"
+
 
         android:id="@+id/selLoc"
         android:onClick="onClick"
         android:scaleType="fitXY"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"  />
 </RelativeLayout>
