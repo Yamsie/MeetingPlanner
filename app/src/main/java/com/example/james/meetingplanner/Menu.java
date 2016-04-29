@@ -38,7 +38,7 @@ public class Menu extends AppCompatActivity {
                 break;
 
             case R.id.favs:
-                Intent favintent = new Intent(this, Favourites.class);
+                Intent favintent = new Intent(this, SelectFavourites.class);
                 startActivity(favintent);
                 break;
 

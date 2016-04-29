@@ -47,6 +47,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.james.meetingplanner.Menu" />
         </activity>
+        <activity android:name=".SelectFavourites" />
+        <activity android:name=".FavActivities" />
+        <activity android:name=".FavLocations"></activity>
     </application>
 
 </manifest>
