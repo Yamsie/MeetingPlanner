@@ -91,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
         boolean returnVal;
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
 
-        returnVal = db.delete("activities", "activity = " + act, null) > 0;
+        returnVal = db.delete("activities", "activity = '" + act + "';", null) > 0;
         db.close();
         return returnVal;
     }
@@ -100,7 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
         boolean returnVal;
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
 
-        returnVal = db.delete("locations", "location = " + loc, null) > 0;
+        returnVal = db.delete("locations", "location = '" + loc + "';", null) > 0;
         db.close();
         return returnVal;
     }
