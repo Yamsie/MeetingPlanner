@@ -24,7 +24,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
 
     String name, loc, time, date, act, dur, data;
-
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,4 +55,32 @@ public class ViewFutureMeetings extends AppCompatActivity {
         c.close();
         db.close();
     }
+    */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_future_meetings);
+        dbhelper = DBHelper.getInstance(this);
+        db = dbhelper.getWritableDatabase();
+        ArrayList<Meetings> ms = new ArrayList<>();
+
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
+        int num = c.getCount();
+        Toast.makeText(this, num + " row in meetings table", Toast.LENGTH_LONG).show();
+        if(c.moveToFirst()) {
+            while (c.moveToNext()) {
+                Meetings meet = new Meetings();
+                meet.setFriend(c.getString(c.getColumnIndex(DBHelper.COL1)));
+                meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
+                meet.setTime(c.getString(c.getColumnIndex(DBHelper.COL3)));
+                meet.setDate(c.getString(c.getColumnIndex(DBHelper.COL4)));
+                meet.setActivity(c.getString(c.getColumnIndex(DBHelper.COL5)));
+                meet.setDuration(c.getString(c.getColumnIndex(DBHelper.COL9)));
+                ms.add(meet);
+            }
+        }
+
+
+
+
 }
