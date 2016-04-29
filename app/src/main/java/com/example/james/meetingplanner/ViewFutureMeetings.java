@@ -3,8 +3,6 @@ package com.example.james.meetingplanner;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -35,18 +33,12 @@ public class ViewFutureMeetings extends AppCompatActivity {
         int count = 0;
         if (c.moveToFirst()) {
             while (c.moveToNext()) {
-                data = "";
                 data = c.getString(c.getColumnIndex(DBHelper.COL1));
-                //meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
-                //meet.setTime(c.getString(c.getColumnIndex(DBHelper.COL3)));
-                //meet.setDate(c.getString(c.getColumnIndex(DBHelper.COL4)));
-                //meet.setActivity(c.getString(c.getColumnIndex(DBHelper.COL5)));
-                //meet.setDuration(c.getString(c.getColumnIndex(DBHelper.COL9)));
                 ms[count] = data;
                 count++;
             }
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, ms);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, ms);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
