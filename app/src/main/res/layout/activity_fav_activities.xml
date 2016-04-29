@@ -9,36 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.james.meetingplanner.FavActivities">
 
-    <!-- <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true">
-
-        <EditText
-            android:id="@+id/addNew"
-            android:onClick="onClick"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textColor="#000000"
-            android:layout_weight="1"
-            android:textSize="6pt"/>
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="Add"
-            android:id="@+id/button"
-            android:layout_gravity="right"
-            android:layout_weight="1" />
-    </LinearLayout> -->
 
     <LinearLayout
-        android:id="@+id/login_layout_inner_ipAddr"
+        android:id="@+id/layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -66,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:drawSelectorOnTop="true"
-        android:layout_above="@+id/login_layout_inner_ipAddr">
+        android:layout_above="@+id/layout">
     </ListView>
 
     <Button
@@ -76,6 +49,6 @@
         android:text="Add"
         android:id="@+id/add"
         android:onClick="onClick"
-        android:layout_alignTop="@+id/login_layout_inner_ipAddr"
+        android:layout_alignTop="@+id/layout"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>
