@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+
+    android:paddingTop="0dp"
+
+    tools:context="com.example.james.meetingplanner.Menu"
+    tools:showIn="@layout/activity_menu">
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:id="@+id/arrange"
+        android:background = "@drawable/aam"
+        android:adjustViewBounds="true"
+        android:onClick="onClick"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true" />
+    <Button
+
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:id="@+id/viewCurrent"
+        android:layout_alignParentLeft="true"
+        android:onClick="onClick"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="0dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        android:background ="@drawable/future"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:id="@+id/viewPast"
+        android:layout_below="@+id/viewCurrent"
+
+        android:onClick="onClick"
+        android:layout_marginLeft="200dp"
+
+        android:layout_marginBottom="0dp"
+        android:background = "@drawable/pastm"
+        android:scaleType="fitXY"
+        android:padding="0dp" />
+    <Button
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:id="@+id/favs"
+        android:layout_marginLeft="400dp"
+        android:onClick="onClick"
+        android:layout_marginBottom="0dp"
+        android:scaleType="fitXY"
+        android:background = "@drawable/favs"
+        android:padding="0dp" />
+  <!--poop m-->
+
+</RelativeLayout>
