@@ -28,34 +28,40 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
         int num = c.getCount();
-        ArrayList<Meetings> ms = new ArrayList<>();
-        Toast.makeText(this, num + " row in meetings table", Toast.LENGTH_LONG).show();
+        ArrayList<String> ms = new ArrayList<>();
+        Toast.makeText(this, num + " row(s) in meetings table", Toast.LENGTH_LONG).show();
         int count = 0;
-        if (c.moveToFirst()) {
-            while (c.moveToNext()) {
-                Meetings meet = new Meetings();
-                meet.setFriend(c.getString(c.getColumnIndex(DBHelper.COL1)));
-                meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
+        String n = "";
+        if (c.moveToFirst())
+        {
+            do
+            {
+                //Meetings meet = new Meetings();
+                n = c.getString(c.getColumnIndex(DBHelper.COL1));
+                /*meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
                 meet.setTime(c.getString(c.getColumnIndex(DBHelper.COL3)));
                 meet.setDate(c.getString(c.getColumnIndex(DBHelper.COL4)));
                 meet.setActivity(c.getString(c.getColumnIndex(DBHelper.COL5)));
                 meet.setDuration(c.getString(c.getColumnIndex(DBHelper.COL9)));
-                ms.add(meet);
+                ms.add(meet);*/
+                ms.add(n);
             }
-        }
-        //putting friend values from tnhe array into an ArrayList
-        String[] v = new String[ms.size()];
-        for (int i = 0; i < v.length; i++) {
-            v[i] = ms.get(i).getFriend();
+            while (c.moveToNext());
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, v);
-        listView1.setAdapter(adapter);
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //putting friend values from the array into an ArrayList
+            String[] v = new String[ms.size()];
+            for(int i = 0; i < v.length; i++) {
+                v[i] = ms.get(i);
             }
-        });
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, v);
+            listView1.setAdapter(adapter);
+            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //put meeting shite in this method maybe create a frag to display meeting details???
+                }
+            });
         db.close();
         c.close();
     }
