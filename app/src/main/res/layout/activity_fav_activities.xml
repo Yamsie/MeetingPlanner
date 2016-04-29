@@ -55,16 +55,10 @@
             android:inputType="text"
             android:maxLength="15"
             android:layout_gravity="center"
-            android:textSize="5pt" />
+            android:textSize="5pt"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
 
-        <Button
-            android:style="?android:attr/buttonStyleSmall"
-            android:id="@+id/login_btn_ipAddr"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="Add"
-            android:layout_gravity="right"
-            android:layout_weight="1" />
     </LinearLayout>
 
 
