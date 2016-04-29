@@ -1,5 +1,8 @@
 package com.example.james.meetingplanner;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -54,7 +57,6 @@ public class Favourites extends AppCompatActivity {
                 addAct.setVisibility(View.INVISIBLE);
                 addLoc.setVisibility(View.INVISIBLE);
 
-
                 final ListView listView = (ListView) findViewById(R.id.listAct);
 
                 ArrayList<String> data = dbhelper.viewActivities(this);
@@ -73,13 +75,33 @@ public class Favourites extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
 
-                        int itemPosition     = position;
+                        final int itemPosition     = position;
+                        final String  itemValue    = (String) listView.getItemAtPosition(position);
 
-                        String  itemValue    = (String) listView.getItemAtPosition(position);
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
-                        Toast.makeText(getApplicationContext(),
-                                "Position: " + itemPosition + "  ListItem: " + itemValue, Toast.LENGTH_LONG)
-                                .show();
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        dbhelper.delActivities(itemValue, Favourites.this);
+                                        Intent yesintent = getIntent();
+                                        finish();
+                                        startActivity(yesintent);
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        Intent nointent = getIntent();
+                                        finish();
+                                        startActivity(nointent);
+                                        break;
+                                }
+                            }
+                        };
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Favourites.this);
+                        builder.setMessage("Would you like to remove " + itemValue + "?").setPositiveButton("Yes", dialogClickListener)
+                                .setNegativeButton("No", dialogClickListener).show();
                     }
                 });
                 break;
