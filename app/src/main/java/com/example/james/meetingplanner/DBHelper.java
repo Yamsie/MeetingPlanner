@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "meetings_planner";
@@ -14,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String aTable = "activities";
     public static final String lTable = "locations";
 
-    private static final String CREATE_TABLE_MEETINGS = "CREATE TABLE IF NOT EXISTS " + mTable + " (friend VARCHAR,location VARCHAR,date DATE, time TIME, activity VARCHAR, duration INT);";
+    private static final String CREATE_TABLE_MEETINGS = "CREATE TABLE IF NOT EXISTS " + mTable + " (friend VARCHAR,location VARCHAR,date DATE, time TIME, activity VARCHAR,duration INT);";
     private static final String CREATE_TABLE_ACTIVITIES = "CREATE TABLE IF NOT EXISTS " + aTable + " (activity VARCHAR);";
     private static final String CREATE_TABLE_LOCATIONS = "CREATE TABLE IF NOT EXISTS " + lTable + " (location VARCHAR);";
 
@@ -104,19 +106,32 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // BOTH TO BE USED FOR LISTING WHAT CURRENTLY EXISTS IN TABLES
-    public String[] viewActivities(Context c) {
+    public ArrayList<String> viewActivities(Context c) {
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
-        Cursor cur = db.rawQuery("SELECT * FROM activities", null);
+        Cursor cur = db.rawQuery("SELECT * FROM activities;", null);
         int count = cur.getCount();
-        String[] colNames = cur.getColumnNames();
+        ArrayList<String> data = new ArrayList<String>(); //cur.getColumnNames();
+        int counter = 0;
+        if (cur.moveToFirst())
+        {
+            do
+            {
+                data.add(cur.getString(0));
+            }
+            while (cur.moveToNext());
+        }
+        if (cur != null && !cur.isClosed())
+        {
+            cur.close();
+        }
         db.close();
         cur.close();
-        return colNames;
+        return data;
     }
 
     public void viewLocations(Context c) {
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
-        Cursor cur = db.rawQuery("SELECT * FROM locations", null);
+        Cursor cur = db.rawQuery("SELECT * FROM locations;", null);
         db.close();
         cur.close();
     }
@@ -125,12 +140,11 @@ public class DBHelper extends SQLiteOpenHelper {
     protected boolean searchActivities(String act) {
     boolean returnVal;
     SQLiteDatabase db = instance.getReadableDatabase();
-    String query = "Select * from activities where activity = " + act + ";";
+    String query = "Select * from activities where activity = '" + act + "';";
     Cursor c = db.rawQuery(query, null);
     if(c == null){
         returnVal = false;
-    }
-    else {
+    } else {
         returnVal = true;
     }
     c.close();
@@ -140,12 +154,11 @@ public class DBHelper extends SQLiteOpenHelper {
     private boolean searchLocations(String loc) {
     boolean returnVal;
     SQLiteDatabase db = instance.getReadableDatabase();
-    String query = "Select * from locations where location = " + loc + ";";
+    String query = "Select * from locations where location = '" + loc + "';";
     Cursor c = db.rawQuery(query, null);
     if(c == null){
         returnVal = false;
-    }
-    else {
+    } else {
         returnVal = true;
     }
     c.close();

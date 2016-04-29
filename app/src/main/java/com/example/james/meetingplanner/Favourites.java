@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Favourites extends AppCompatActivity {
 
     private DBHelper dbhelper;
@@ -33,7 +35,12 @@ public class Favourites extends AppCompatActivity {
                 Present list with all of users favourite activities saved to DB.
                  */
                 final ListView listView = (ListView) findViewById(R.id.listAct);
-                String[] values = dbhelper.viewActivities(this);
+
+                ArrayList<String> data = dbhelper.viewActivities(this);
+
+                String[] values = new String[data.size()];
+                for (int i = 0; i < values.length; i++)
+                    values[i] = data.get(i);
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1, android.R.id.text1, values);
@@ -65,10 +72,11 @@ public class Favourites extends AppCompatActivity {
                  */
                 EditText afa = (EditText) findViewById(R.id.addAct);
                 String input = afa.getText().toString();
-                Boolean present = dbhelper.searchActivities(input);
+                boolean present = dbhelper.searchActivities(input);
                 if(present) {
                     if (input.matches(pattern)) {
                         dbhelper.addActivities(input, this);
+                        Toast.makeText(this, "Added to DB", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(this, "Error, invalid input", Toast.LENGTH_LONG).show();
                     }
