@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,11 +20,12 @@ public class FavActivities extends AppCompatActivity {
 
     private DBHelper dbhelper;
     private SQLiteDatabase db;
+    String pattern = "[0-9a-zA-Z ]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fav_activities);
+        setContentView(R.layout.activity_favs);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
@@ -77,8 +80,31 @@ public class FavActivities extends AppCompatActivity {
 
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.addNew:
-                //EditText et = (EditText) findViewById(R.id.addNew);
+            case R.id.add:
+
+                EditText afa = (EditText) findViewById(R.id.addNew);
+                String input = afa.getText().toString();
+                boolean present = dbhelper.searchActivities(input);
+                if(present) {
+                    if (input.matches(pattern)) {
+                        dbhelper.addActivities(input, this);
+                        Toast.makeText(this, "Added to DB", Toast.LENGTH_LONG).show();
+                        Intent thisintent = getIntent();
+                        finish();
+                        startActivity(thisintent);
+                    } else {
+                        Toast.makeText(this, "Error, invalid input", Toast.LENGTH_LONG).show();
+                        Intent failintent = getIntent();
+                        finish();
+                        startActivity(failintent);
+                    }
+                }
+                else{
+                    Toast.makeText(this, "Already present in favourites.", Toast.LENGTH_LONG).show();
+                    Intent failintent = getIntent();
+                    finish();
+                    startActivity(failintent);
+                }
 
                 break;
         }
