@@ -9,6 +9,7 @@ public class Meetings {
     String date;
     String activity;
     String duration;
+    String extra;
 
     public Meetings() {
     }
@@ -20,7 +21,13 @@ public class Meetings {
         this.date = d;
         this.activity = a;
         this.duration = dur;
+        this.extra= "";
     }
+
+    public Meetings(String ex){
+        this.extra = ex;
+    }
+
 
     public void setFriend(String f){
         this.friend = f;
