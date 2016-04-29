@@ -27,7 +27,7 @@ public class ViewPastMeetings extends AppCompatActivity {
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
-        Cursor cur = db.rawQuery("SELECT * FROM meetings where date < date('now') AND time < CURRENT_TIME", null); //get dates in the past
+        Cursor cur = db.rawQuery("SELECT * FROM meetings", null); //get dates in the past
         int num = cur.getCount();
         Toast.makeText(this, num + " past meetings", Toast.LENGTH_LONG).show();
         while (cur.moveToNext()) {

@@ -33,7 +33,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         db = dbhelper.getWritableDatabase();
         lol = (ListView) findViewById(R.id.list_person);
 
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE DATE > date('now') AND time > CURRENT_TIME", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
         int num = c.getCount();
         Toast.makeText(this, num + " row in meetings table", Toast.LENGTH_LONG).show();
         if(c.moveToFirst()) {

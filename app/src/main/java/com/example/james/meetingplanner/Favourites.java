@@ -65,11 +65,16 @@ public class Favourites extends AppCompatActivity {
                  */
                 EditText afa = (EditText) findViewById(R.id.addAct);
                 String input = afa.getText().toString();
-                if(input.matches(pattern)) {
-                    dbhelper.addActivities(input, this);
+                Boolean present = dbhelper.searchActivities(input);
+                if(present) {
+                    if (input.matches(pattern)) {
+                        dbhelper.addActivities(input, this);
+                    } else {
+                        Toast.makeText(this, "Error, invalid input", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else{
-                    Toast.makeText(this, "Error, invalid input",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Already present in favourites.", Toast.LENGTH_LONG).show();
                 }
                 break;
 

@@ -122,7 +122,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    private boolean searchActivities(String act) {
+    protected boolean searchActivities(String act) {
     boolean returnVal;
     SQLiteDatabase db = instance.getReadableDatabase();
     String query = "Select * from activities where activity = " + act + ";";
