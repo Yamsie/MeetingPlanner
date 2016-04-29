@@ -36,7 +36,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         {
             do
             {
-                //Meetings meet = new Meetings();
+                //Meetings meetm = new Meetings();
                 n = c.getString(c.getColumnIndex(DBHelper.COL1));
                 /*meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
                 meet.setTime(c.getString(c.getColumnIndex(DBHelper.COL3)));
