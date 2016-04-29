@@ -19,11 +19,12 @@ import java.util.ArrayList;
 public class ViewFutureMeetings extends AppCompatActivity {
     private DBHelper dbhelper;
     private SQLiteDatabase db;
-    private ArrayList <String> friends;
+    private ArrayList<String> friends;
     private ListView lol;
 
 
     String name, loc, time, date, act, dur, data;
+
     /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
         int num = c.getCount();
         Toast.makeText(this, num + " row in meetings table", Toast.LENGTH_LONG).show();
-        if(c.moveToFirst()) {
+        if (c.moveToFirst()) {
             while (c.moveToNext()) {
                 Meetings meet = new Meetings();
                 meet.setFriend(c.getString(c.getColumnIndex(DBHelper.COL1)));
@@ -79,8 +80,10 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 ms.add(meet);
             }
         }
-
-
-
-
+    }
 }
+
+
+
+
+
