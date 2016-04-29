@@ -24,20 +24,20 @@ public class FavLocations extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favs);
+        setContentView(R.layout.activity_fav_locations);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
         final ListView listView = (ListView) findViewById(R.id.listAct);
 
-        ArrayList<String> data = dbhelper.viewActivities(this);
+        ArrayList<String> data = dbhelper.viewLocations(this);
 
         String[] values = new String[data.size()];
         for (int i = 0; i < values.length; i++)
             values[i] = data.get(i);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+                android.R.layout.simple_list_item_2, android.R.id.text2, values);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,7 +55,7 @@ public class FavLocations extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
-                                dbhelper.delActivities(itemValue, FavLocations.this);
+                                dbhelper.delLocations(itemValue, FavLocations.this);
                                 Intent yesintent = getIntent();
                                 finish();
                                 startActivity(yesintent);
@@ -83,10 +83,10 @@ public class FavLocations extends AppCompatActivity {
 
                 EditText afa = (EditText) findViewById(R.id.addNew);
                 String input = afa.getText().toString();
-                boolean present = dbhelper.searchActivities(input);
+                boolean present = dbhelper.searchLocations(input);
                 if(present) {
                     if (input.matches(pattern)) {
-                        dbhelper.addActivities(input, this);
+                        dbhelper.addLocations(input, this);
                         Toast.makeText(this, "Added to DB", Toast.LENGTH_LONG).show();
                         Intent thisintent = getIntent();
                         finish();

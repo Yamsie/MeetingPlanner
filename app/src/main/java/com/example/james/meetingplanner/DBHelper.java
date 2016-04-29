@@ -129,11 +129,27 @@ public class DBHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public void viewLocations(Context c) {
+    public ArrayList<String> viewLocations(Context c) {
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM locations;", null);
+        int count = cur.getCount();
+        ArrayList<String> data = new ArrayList<String>(); //cur.getColumnNames();
+        int counter = 0;
+        if (cur.moveToFirst())
+        {
+            do
+            {
+                data.add(cur.getString(0));
+            }
+            while (cur.moveToNext());
+        }
+        if (cur != null && !cur.isClosed())
+        {
+            cur.close();
+        }
         db.close();
         cur.close();
+        return data;
     }
 
 
@@ -151,7 +167,7 @@ public class DBHelper extends SQLiteOpenHelper {
     return returnVal;
     }
 
-    private boolean searchLocations(String loc) {
+    protected boolean searchLocations(String loc) {
     boolean returnVal;
     SQLiteDatabase db = instance.getReadableDatabase();
     String query = "Select * from locations where location = '" + loc + "';";

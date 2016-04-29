@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,7 +24,7 @@ public class FavActivities extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favs);
+        setContentView(R.layout.activity_fav_activities);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
@@ -46,6 +45,8 @@ public class FavActivities extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+
 
                 final int itemPosition     = position;
                 final String  itemValue    = (String) listView.getItemAtPosition(position);
