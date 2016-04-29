@@ -60,10 +60,10 @@ public class ViewFutureMeetings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_future_meetings);
+        setContentView(R.layout.content_view_future_meetings);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
-        ArrayList<Meetings> ms = new ArrayList<>();
+        ArrayList<Meetings> ms = new ArrayList<Meetings>();
 
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings", null);
         int num = c.getCount();
