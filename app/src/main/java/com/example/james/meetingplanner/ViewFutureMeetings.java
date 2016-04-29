@@ -43,7 +43,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 ms.add(meet);
             }
         }
-        //putting friend values from the array into an ArrayList
+        //putting friend values from tnhe array into an ArrayList
         String[] v = new String[ms.size()];
         for (int i = 0; i < v.length; i++) {
             v[i] = ms.get(i).getFriend();
