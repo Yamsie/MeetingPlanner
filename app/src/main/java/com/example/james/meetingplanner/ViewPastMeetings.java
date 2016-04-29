@@ -23,7 +23,7 @@ public class ViewPastMeetings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_past_meetings);
+        //setContentView(R.layout.view_past_meetings);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
