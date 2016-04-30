@@ -24,19 +24,18 @@ public class ViewPastMeetings extends AppCompatActivity {
         ListView listView2 = (ListView) findViewById(R.id.list_view2);
 
         long currTime = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String ct = sdf.format(currTime);
 
-        Toast.makeText(this, ct + " time", Toast.LENGTH_LONG).show();
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date < date('now')", null);
+        //Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date < date('now') AND time > '" + ct + "';", null);
+        Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date < date('now');", null);
         //only checks the date, not the time if the meeting is today
         int num = c.getCount();
         String [] ms = new String[num];
-        Toast.makeText(this, num + " row(s) in meetings table TESTING PURPOSES", Toast.LENGTH_LONG).show();
-        //Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, num + " row(s) in meetings table TESTING PURPOSES", Toast.LENGTH_SHORT).show();
         int count= 0;
         if (c.moveToFirst()) {
             do {
