@@ -21,6 +21,7 @@ public class Menu extends AppCompatActivity {
         switch(v.getId())
         {
             case R.id.arrange:
+
                 Intent arrintent = new Intent(this, ArrangeMeeting.class);
                 startActivity(arrintent);
                 break;
