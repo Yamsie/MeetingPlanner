@@ -76,4 +76,8 @@ public class Meetings {
     public String getDuration(){
         return duration;
     }
+
+    public String toStringDisplay(){
+         return this.friend + ", " + this.location + ", " + this.time + ", " + this.date + ", " + this.activity + ", " + this.duration;
+    }
 }

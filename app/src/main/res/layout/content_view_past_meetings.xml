@@ -12,4 +12,10 @@
     tools:context="com.example.james.meetingplanner.ViewPastMeetings"
     tools:showIn="@layout/view_past_meetings">
 
+    <ListView
+        android:id="@+id/list_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:choiceMode="multipleChoice" />
+
 </RelativeLayout>
