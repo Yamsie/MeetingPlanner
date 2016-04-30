@@ -50,8 +50,6 @@ public class ArrangeMeeting extends AppCompatActivity {
             if(resultCode == AppCompatActivity.RESULT_OK) {
                 Uri contactData = data.getData();
                 Cursor c = getContentResolver().query(contactData, null, null, null, null);
-               // MediaPlayer mp = MediaPlayer.create(this, R.raw.paddyremix);
-                //mp.start();
 
                 if(c.moveToFirst()) {
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
@@ -60,7 +58,6 @@ public class ArrangeMeeting extends AppCompatActivity {
                 }
             }
         } else if(reqCode == START_CAL) {
-            Toast.makeText(this, "Reached Start_cal", Toast.LENGTH_LONG).show();
             if(RESULT_OK == resultCode) {
                 Intent intent = getIntent();
                 finish();
