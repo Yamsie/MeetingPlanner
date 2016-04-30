@@ -14,6 +14,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -95,6 +96,11 @@ public class ArrangeMeeting extends AppCompatActivity {
                 timeFragment.show(fmTime, "timePicker");
                 break;
 
+            case R.id.buttonDur:
+                EditText edr = (EditText) findViewById(R.id.editDur);
+                edr.requestFocus();
+                break;
+
             case R.id.buttonDate:
                 FragmentManager fmDate = this.getFragmentManager();
                 dateFragment = new DatePickerFragment(this);
@@ -122,7 +128,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
 
-                    if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
+                    //if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
 
                         String name  = en.getText() . toString() . trim();
                         String location = el.getText() . toString() . trim();
@@ -184,16 +190,16 @@ public class ArrangeMeeting extends AppCompatActivity {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
 
-                    } else {
-                        Toast.makeText(this, "Select a later time!", Toast.LENGTH_SHORT).show();
-                    }
+                    //} else {
+                        //.makeText(this, "Select a later time!", Toast.LENGTH_SHORT).show();
+                    //}
 
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(edu)) {
-                    Toast.makeText(this, "Enter a duration less than 12!", Toast.LENGTH_SHORT).show();
-                } else if (!isValidNum(edu)){
                     Toast.makeText(this, "Enter a duration!", Toast.LENGTH_SHORT).show();
+                } else if (!isValidNum(edu)){
+                    Toast.makeText(this, "Enter a duration less than 13 hours!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(en) || !isValid(el) || !isValid(ea) || !isValid(edu)) {
                     Toast.makeText(this, "Please fill in all fields with alphanumerical characters only!", Toast.LENGTH_SHORT).show();
                 }
