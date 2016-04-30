@@ -27,6 +27,8 @@ public class ArrangeMeeting extends AppCompatActivity {
 
     private final int PICK_CONTACT = 1;
     private final int START_CAL = 2;
+    private final int PICK_ACTIVITY = 3;
+    private final int PICK_LOCATION = 4;
     private DialogFragment dateFragment;
     private DialogFragment timeFragment;
     private DBHelper dbhelper;
@@ -62,6 +64,16 @@ public class ArrangeMeeting extends AppCompatActivity {
                 finish();
                 startActivity(intent);
             }
+        } else if(reqCode == PICK_ACTIVITY) {
+            if(RESULT_OK == resultCode) {
+                EditText ea = (EditText) findViewById(R.id.editAct);
+                ea.setText(data.getStringExtra("act"));
+            }
+        } else if(reqCode == PICK_LOCATION) {
+            if(RESULT_OK == resultCode) {
+                EditText el = (EditText) findViewById(R.id.editLoc);
+                el.setText(data.getStringExtra("loc"));
+            }
         } else {
             Intent intent = getIntent();
             finish();
@@ -89,9 +101,13 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonLoc:
+                Intent loc = new Intent(this, SelLocation.class);
+                startActivityForResult(loc, PICK_LOCATION);
                 break;
 
             case R.id.buttonAct:
+                Intent act = new Intent(this, SelActivity.class);
+                startActivityForResult(act, PICK_ACTIVITY);
                 break;
 
             case R.id.buttonSubmit:
@@ -162,7 +178,7 @@ public class ArrangeMeeting extends AppCompatActivity {
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setMessage("Meeting saved!\nWould you like to save it to Google Calendar?").setPositiveButton("Yes", dialogClickListener)
-                                    .setNegativeButton("No", dialogClickListener).show();
+                                    .setNegativeButton("No", dialogClickListener).setCancelable(false).show();
                         } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }

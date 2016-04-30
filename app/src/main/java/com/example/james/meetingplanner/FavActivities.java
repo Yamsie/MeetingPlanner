@@ -25,6 +25,7 @@ public class FavActivities extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
+
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 

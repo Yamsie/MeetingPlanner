@@ -188,6 +188,7 @@
         android:layout_height="wrap_content"
         android:text="Place"
         android:id="@+id/buttonLoc"
+        android:onClick="onClick"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="250dp" />
@@ -198,6 +199,7 @@
         android:layout_height="wrap_content"
         android:text="Activity"
         android:id="@+id/buttonAct"
+        android:onClick="onClick"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="300dp" />

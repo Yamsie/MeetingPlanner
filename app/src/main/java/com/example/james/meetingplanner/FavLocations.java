@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class FavLocations extends AppCompatActivity {
-//
+
     private DBHelper dbhelper;
     private SQLiteDatabase db;
     String pattern = "[0-9a-zA-Z ]+";

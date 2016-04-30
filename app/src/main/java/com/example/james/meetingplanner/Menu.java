@@ -21,8 +21,8 @@ public class Menu extends AppCompatActivity {
         switch(v.getId())
         {
             case R.id.arrange:
-                MediaPlayer mp = MediaPlayer.create(this, R.raw.Ding);
-                mp.start();
+                //MediaPlayer mp = MediaPlayer.create(this, R.raw.Ding);
+                //mp.start();
                 Intent arrintent = new Intent(this, ArrangeMeeting.class);
                 startActivity(arrintent);
                 break;
