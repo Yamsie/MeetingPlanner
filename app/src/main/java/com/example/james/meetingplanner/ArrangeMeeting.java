@@ -27,6 +27,8 @@ public class ArrangeMeeting extends AppCompatActivity {
 
     private final int PICK_CONTACT = 1;
     private final int START_CAL = 2;
+    private final int PICK_ACTIVITY = 3;
+    private final int PICK_LOCATION = 4;
     private DialogFragment dateFragment;
     private DialogFragment timeFragment;
     private DBHelper dbhelper;
@@ -62,6 +64,16 @@ public class ArrangeMeeting extends AppCompatActivity {
                 finish();
                 startActivity(intent);
             }
+        } else if(reqCode == PICK_ACTIVITY) {
+            if(RESULT_OK == resultCode) {
+                EditText ea = (EditText) findViewById(R.id.editAct);
+                ea.setText(data.getStringExtra("act"));
+            }
+        } else if(reqCode == PICK_LOCATION) {
+            if(RESULT_OK == resultCode) {
+                EditText el = (EditText) findViewById(R.id.editLoc);
+                el.setText(data.getStringExtra("loc"));
+            }
         } else {
             Intent intent = getIntent();
             finish();
@@ -89,9 +101,13 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonLoc:
+                Intent loc = new Intent(this, SelLocation.class);
+                startActivityForResult(loc, PICK_LOCATION);
                 break;
 
             case R.id.buttonAct:
+                Intent act = new Intent(this, SelActivity.class);
+                startActivityForResult(act, PICK_ACTIVITY);
                 break;
 
             case R.id.buttonSubmit:
@@ -105,7 +121,6 @@ public class ArrangeMeeting extends AppCompatActivity {
                     TextView et = (TextView) findViewById(R.id.editTime);
 
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
-                        Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
 
                         String name  = en.getText() . toString() . trim();
                         String location = el.getText() . toString() . trim();
@@ -124,7 +139,7 @@ public class ArrangeMeeting extends AppCompatActivity {
 
                         Meetings m1 = new Meetings(name, location, time, date, activity, duration);
                         dbhelper.addMeetings(m1, this);
-                        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Meeting saved!", Toast.LENGTH_LONG).show();
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -162,7 +177,7 @@ public class ArrangeMeeting extends AppCompatActivity {
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setMessage("Meeting saved!\nWould you like to save it to Google Calendar?").setPositiveButton("Yes", dialogClickListener)
-                                    .setNegativeButton("No", dialogClickListener).show();
+                                    .setNegativeButton("No", dialogClickListener).setCancelable(false).show();
                         } catch (ParseException e) {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
@@ -174,7 +189,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(edu)) {
-                    Toast.makeText(this, "Enter a duration less than !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Enter a duration less than 12!", Toast.LENGTH_SHORT).show();
                 } else if (!isValidNum(edu)){
                     Toast.makeText(this, "Enter a duration!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(en) || !isValid(el) || !isValid(ea) || !isValid(edu)) {

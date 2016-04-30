@@ -25,10 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="5"
-            android:inputType="text"
             android:maxLength="15"
             android:layout_gravity="center"
-            android:textSize="5pt"
+            android:inputType="textCapWords"
+            android:textSize="8pt"
             android:singleLine="true" />
 
     </LinearLayout>

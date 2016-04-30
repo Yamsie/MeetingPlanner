@@ -18,10 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Favourites"
-            android:label="Favourites"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Add_Delete_From_DB"
             android:label="@string/title_activity_add__delete__from__db"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -48,8 +44,10 @@
                 android:value="com.example.james.meetingplanner.Menu" />
         </activity>
         <activity android:name=".SelectFavourites" />
-        <activity android:name=".FavActivities" />
-        <activity android:name=".FavLocations" />
+        <activity android:name=".FavActivities"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".FavLocations"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".SelActivity" />
         <activity android:name=".SelLocation"></activity>
     </application>

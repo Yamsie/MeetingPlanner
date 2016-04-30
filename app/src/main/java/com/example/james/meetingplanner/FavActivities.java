@@ -25,6 +25,7 @@ public class FavActivities extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
+
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
@@ -85,16 +86,15 @@ public class FavActivities extends AppCompatActivity {
 
                 EditText afa = (EditText) findViewById(R.id.addNew);
                 String input = afa.getText().toString();
-                boolean present = dbhelper.searchActivities(input);
+                boolean present = dbhelper.searchActivities(input, this);
                 if(present) {
                     if (input.matches(pattern)) {
                         dbhelper.addActivities(input, this);
-                        Toast.makeText(this, "Added to DB", Toast.LENGTH_LONG).show();
                         Intent thisintent = getIntent();
                         finish();
                         startActivity(thisintent);
                     } else {
-                        Toast.makeText(this, "Error, invalid input", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Invalid input, alphanumeric characters and spaces only.", Toast.LENGTH_LONG).show();
                         Intent failintent = getIntent();
                         finish();
                         startActivity(failintent);

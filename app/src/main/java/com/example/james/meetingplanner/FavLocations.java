@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class FavLocations extends AppCompatActivity {
-//
+
     private DBHelper dbhelper;
     private SQLiteDatabase db;
     String pattern = "[0-9a-zA-Z ]+";
@@ -83,16 +83,15 @@ public class FavLocations extends AppCompatActivity {
 
                 EditText afa = (EditText) findViewById(R.id.addNew);
                 String input = afa.getText().toString();
-                boolean present = dbhelper.searchLocations(input);
+                boolean present = dbhelper.searchLocations(input, this);
                 if(present) {
                     if (input.matches(pattern)) {
                         dbhelper.addLocations(input, this);
-                        Toast.makeText(this, "Added to DB", Toast.LENGTH_LONG).show();
                         Intent thisintent = getIntent();
                         finish();
                         startActivity(thisintent);
                     } else {
-                        Toast.makeText(this, "Error, invalid input", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Invalid input, alphanumeric characters and spaces only.", Toast.LENGTH_LONG).show();
                         Intent failintent = getIntent();
                         finish();
                         startActivity(failintent);
