@@ -101,7 +101,7 @@
         android:inputType="number"
         android:hint="Duration"
         android:ems="10"
-        android:maxLength="15"
+        android:maxLength="2"
         android:id="@+id/editDur"
         android:singleLine="true"
         android:layout_alignParentTop="true"
