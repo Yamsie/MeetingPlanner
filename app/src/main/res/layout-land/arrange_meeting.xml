@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="1dp"
+    tools:context="com.example.james.meetingplanner.ArrangeMeeting"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Meeting"
+        android:id="@+id/textCon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="At"
+        android:id="@+id/textTime"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="For"
+        android:id="@+id/textDur"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="On"
+        android:id="@+id/textDate"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="305dp"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="In"
+        android:id="@+id/textLoc"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="180dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="For"
+        android:id="@+id/textAct"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="305dp"
+        android:layout_marginTop="180dp" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:hint="Enter Name"
+        android:ems="10"
+        android:id="@+id/editCon"
+        android:singleLine="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Select Time"
+        android:id="@+id/editTime"
+        android:typeface="sans"
+        android:textColor="?attr/editTextColor"
+        android:background="?attr/editTextBackground"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="340dp"
+        android:layout_marginTop="5dp" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Duration"
+        android:ems="10"
+        android:id="@+id/editDur"
+        android:singleLine="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="90dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Select Date"
+        android:id="@+id/editDate"
+        android:typeface="sans"
+        android:textColor="?attr/editTextColor"
+        android:background="?attr/editTextBackground"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="340dp"
+        android:layout_marginTop="95dp" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Location"
+        android:inputType="textCapWords"
+        android:id="@+id/editLoc"
+        android:singleLine="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="170dp" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Activity"
+        android:inputType="textCapWords"
+        android:id="@+id/editAct"
+        android:singleLine="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="345dp"
+        android:layout_marginTop="170dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="Contacts"
+        android:id="@+id/buttonCon"
+        android:onClick="onClick"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="0dp" />
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="Time"
+        android:id="@+id/buttonTime"
+        android:onClick="onClick"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="450dp"
+        android:layout_marginTop="0dp" />
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="Hours"
+        android:id="@+id/buttonDur"
+        android:onClick="onClick"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="90dp" />
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="Date"
+        android:id="@+id/buttonDate"
+        android:onClick="onClick"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="450dp"
+        android:layout_marginTop="90dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="Place"
+        android:id="@+id/buttonLoc"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="170dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:text="Activity"
+        android:id="@+id/buttonAct"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="450dp"
+        android:layout_marginTop="170dp" />
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Submit!"
+        android:id="@+id/buttonSubmit"
+        android:onClick="onClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp" />
+
+</RelativeLayout>
