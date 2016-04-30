@@ -1,5 +1,6 @@
 package com.example.james.meetingplanner;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -59,104 +60,55 @@ public class ViewFutureMeetings extends AppCompatActivity {
         listView1.setAdapter(adapter);
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-         @Override
-         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-         }
-     }
+                DBHelper dbhelper;
+                SQLiteDatabase db;
+                ListView listView3 = (ListView) findViewById(R.id.list_view);
 
-        );
+                final int itemPosition = position;
+                final String itemValue = (String) listView3.getItemAtPosition(position);
+
+                dbhelper = DBHelper.getInstance(ViewFutureMeetings.this);
+                db = dbhelper.getWritableDatabase();
+
+                Cursor c = db.rawQuery("SELECT * FROM meetings WHERE friend = '" + itemValue + "';", null);
+                int num = c.getCount();
+                final String[] list = new String[num];
+                int count = 0;
+                if (c.moveToFirst()) {
+                    do {
+                        String data = "You are meeting ";
+                        data += c.getString(c.getColumnIndex(DBHelper.COL1)); //name
+                        data += " at/in " + c.getString(c.getColumnIndex(DBHelper.COL2)); //location
+                        data += " on " + c.getString(c.getColumnIndex(DBHelper.COL4)); //date
+                        data += " at " + c.getString(c.getColumnIndex(DBHelper.COL3)); //time
+                        data += " for " + c.getString(c.getColumnIndex(DBHelper.COL9)); //duration
+                        data += " hour(s) doing" + c.getString(c.getColumnIndex(DBHelper.COL5)) + "."; //activity
+                        list[count] = data;
+                        count++;
+                    }
+                    while (c.moveToNext());
+                }
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(ViewFutureMeetings.this, android.R.layout.simple_list_item_1, android.R.id.text1, list);
+                listView3.setAdapter(adapter3);
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent (ViewFutureMeetings.this, Menu.class);
+                        startActivity(intent);
+                    }
+                };
+                String message = "";
+                for (int i = 0; i < list.length; i++) {
+                    message += list[i] + "\n";
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewFutureMeetings.this);
+                builder.setMessage(message).setPositiveButton("Ok", dialogClickListener);
+            }
+        });
     }
 }
-
-
-                   /*
-                   DBHelper dbhelper;
-                   SQLiteDatabase db;
-                   ListView listView3 = (ListView) findViewById(R.id.list_view);
-                   //ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, v);
-                   //listView3.setAdapter(adapter3);
-
-                   final int itemPosition     = position;
-                   final String  itemValue    = (String) listView3.getItemAtPosition(position);
-
-                   dbhelper = DBHelper.getInstance();
-                   db = dbhelper.getWritableDatabase();
-
-
-                   Cursor c = db.rawQuery("SELECT * FROM meetings WHERE friend = " + itemValue + ";", null);
-                   //only checks the date, not the time if the meeting is today
-                   int num = c.getCount();
-                   ArrayList<String> ms = new ArrayList<>();
-                   //Toast.makeText(this, num + " row(s) in meetings table TESTING PURPOSES", Toast.LENGTH_LONG).show();
-                   int count = 0;
-                   String name = "";
-                   if (c.moveToFirst())
-                   {
-                       do
-                       {
-                           //Meetings meet = new Meetings();
-                           name = c.getString(c.getColumnIndex(DBHelper.COL1));
-                /*meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
-                meet.setTime(c.getString(c.getColumnIndex(DBHelper.COL3)));
-                meet.setDate(c.getString(c.getColumnIndex(DBHelper.COL4)));
-                meet.setActivity(c.getString(c.getColumnIndex(DBHelper.COL5)));
-                meet.setDuration(c.getString(c.getColumnIndex(DBHelper.COL9)));
-                ms.add(meet);
-                           ms.add(name);
-                       }
-                       while (c.moveToNext());
-                   }
-
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                dbhelper.delActivities(itemValue, FavActivities.this);
-                                Intent yesintent = getIntent();
-                                finish();
-                                startActivity(yesintent);
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                Intent nointent = getIntent();
-                                finish();
-                                startActivity(nointent);
-                                break;
-                        }
-                    }
-                };@Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-
-
-                final int itemPosition     = position;
-                final String  itemValue    = (String) listView.getItemAtPosition(position);
-
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                dbhelper.delActivities(itemValue, FavActivities.this);
-                                Intent yesintent = getIntent();
-                                finish();
-                                startActivity(yesintent);
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                Intent nointent = getIntent();
-                                finish();
-                                startActivity(nointent);
-                                break;
-                        }
-                    }
-                }; */
-
-
