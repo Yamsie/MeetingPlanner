@@ -197,9 +197,9 @@ public class ArrangeMeeting extends AppCompatActivity {
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(edu)) {
-                    Toast.makeText(this, "Enter a duration less than 12!", Toast.LENGTH_SHORT).show();
-                } else if (!isValidNum(edu)){
                     Toast.makeText(this, "Enter a duration!", Toast.LENGTH_SHORT).show();
+                } else if (!isValidNum(edu)){
+                    Toast.makeText(this, "Enter a duration less than 13 hours!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(en) || !isValid(el) || !isValid(ea) || !isValid(edu)) {
                     Toast.makeText(this, "Please fill in all fields with alphanumerical characters only!", Toast.LENGTH_SHORT).show();
                 }
