@@ -94,7 +94,7 @@ public class FavActivities extends AppCompatActivity {
                         finish();
                         startActivity(thisintent);
                     } else {
-                        Toast.makeText(this, "Error, invalid input", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Invalid input, alphanumeric characters and spaces only.", Toast.LENGTH_LONG).show();
                         Intent failintent = getIntent();
                         finish();
                         startActivity(failintent);
