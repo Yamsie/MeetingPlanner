@@ -24,11 +24,11 @@ public class FavLocations extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fav_activities);
+        setContentView(R.layout.activity_favs);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
-        final ListView listView = (ListView) findViewById(R.id.listAct);
+        final ListView listView = (ListView) findViewById(R.id.listContent);
 
         ArrayList<String> data = dbhelper.viewLocations(this);
 
