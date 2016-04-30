@@ -120,7 +120,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
 
-                    if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
+                    //if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
 
                         String name  = en.getText() . toString() . trim();
                         String location = el.getText() . toString() . trim();
@@ -182,9 +182,9 @@ public class ArrangeMeeting extends AppCompatActivity {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
 
-                    } else {
-                        Toast.makeText(this, "Select a later time!", Toast.LENGTH_SHORT).show();
-                    }
+                    //} else {
+                        //.makeText(this, "Select a later time!", Toast.LENGTH_SHORT).show();
+                    //}
 
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();

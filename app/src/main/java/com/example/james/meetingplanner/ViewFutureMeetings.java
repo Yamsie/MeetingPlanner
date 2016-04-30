@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android .widget.Toast;
 import android.content.Context;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ViewFutureMeetings extends AppCompatActivity {
@@ -28,25 +30,22 @@ public class ViewFutureMeetings extends AppCompatActivity {
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
+        long currTime = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String ct = sdf.format(currTime);
+
         //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now') AND time > time('now')", null);
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now');", null);
+                //AND time > '"+ ct + "';", null);
         //only checks the date, not the time if the meeting is today
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<>();
-        Toast.makeText(this, num + " row(s) in meetings table TESTING PURPOSES", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
         int count = 0;
         String name = "";
         if (c.moveToFirst()) {
             do {
-                //Meetings meet = new Meetings();
                 name = c.getString(c.getColumnIndex(DBHelper.COL1));
-                /*meet.setLocation(c.getString(c.getColumnIndex(DBHelper.COL2)));
-                meet.setTime(c.getString(c.getColumnIndex(DBHelper.COL3)));
-                meet.setDate(c.getString(c.getColumnIndex(DBHelper.COL4)));
-                meet.setActivity(c.getString(c.getColumnIndex(DBHelper.COL5)));
-                meet.setDuration(c.getString(c.getColumnIndex(DBHelper.COL9)));
-                ms.add(meet);*/
                 ms.add(name);
             }
             while (c.moveToNext());
@@ -85,7 +84,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
                         data += " on " + c.getString(c.getColumnIndex(DBHelper.COL4)); //date
                         data += " at " + c.getString(c.getColumnIndex(DBHelper.COL3)); //time
                         data += " for " + c.getString(c.getColumnIndex(DBHelper.COL9)); //duration
-                        data += " hour(s) doing" + c.getString(c.getColumnIndex(DBHelper.COL5)) + "."; //activity
+                        data += " hour(s) doing " + c.getString(c.getColumnIndex(DBHelper.COL5)) + "."; //activity
                         list[count] = data;
                         count++;
                     }
@@ -93,21 +92,12 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 }
                 ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(ViewFutureMeetings.this, android.R.layout.simple_list_item_1, android.R.id.text1, list);
                 listView3.setAdapter(adapter3);
-
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent (ViewFutureMeetings.this, Menu.class);
-                        startActivity(intent);
-                    }
-                };
                 String message = "";
                 for (int i = 0; i < list.length; i++) {
                     message += list[i] + "\n";
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(ViewFutureMeetings.this);
-                builder.setMessage(message).setPositiveButton("Ok", dialogClickListener);
+                builder.setMessage(message);
             }
         });
     }
