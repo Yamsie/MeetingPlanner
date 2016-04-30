@@ -92,6 +92,12 @@ public class ArrangeMeeting extends AppCompatActivity {
                 dateFragment.show(fmDate, "datePicker");
                 break;
 
+            case R.id.buttonLoc:
+                break;
+
+            case R.id.buttonAct:
+                break;
+
             case R.id.buttonSubmit:
 
                 EditText en = (EditText) findViewById(R.id.editCon);

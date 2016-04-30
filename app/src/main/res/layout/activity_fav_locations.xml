@@ -34,7 +34,7 @@
 
 
     <ListView
-        android:id="@+id/listAct"
+        android:id="@+id/listLoc"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:drawSelectorOnTop="true"

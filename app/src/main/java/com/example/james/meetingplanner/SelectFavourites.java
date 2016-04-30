@@ -21,7 +21,7 @@ public class SelectFavourites extends AppCompatActivity {
                 break;
 
             case R.id.selLoc:
-                Intent locIntent = new Intent(this, FavActivities.class);
+                Intent locIntent = new Intent(this, FavLocations.class);
                 startActivity(locIntent);
                 break;
         }

@@ -24,7 +24,7 @@ public class FavLocations extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fav_locations);
+        setContentView(R.layout.activity_fav_activities);
         dbhelper = DBHelper.getInstance(this);
         db = dbhelper.getWritableDatabase();
 
@@ -37,7 +37,7 @@ public class FavLocations extends AppCompatActivity {
             values[i] = data.get(i);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_2, android.R.id.text2, values);
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

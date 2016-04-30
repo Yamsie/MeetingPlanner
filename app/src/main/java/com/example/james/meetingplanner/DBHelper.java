@@ -110,7 +110,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM activities;", null);
         int count = cur.getCount();
-        ArrayList<String> data = new ArrayList<String>(); //cur.getColumnNames();
+        ArrayList<String> data = new ArrayList<String>();
         int counter = 0;
         if (cur.moveToFirst())
         {
@@ -133,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM locations;", null);
         int count = cur.getCount();
-        ArrayList<String> data = new ArrayList<String>(); //cur.getColumnNames();
+        ArrayList<String> data = new ArrayList<String>();
         int counter = 0;
         if (cur.moveToFirst())
         {
