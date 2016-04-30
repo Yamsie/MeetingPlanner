@@ -13,6 +13,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,11 @@ public class ArrangeMeeting extends AppCompatActivity {
                 FragmentManager fmTime = this.getFragmentManager();
                 timeFragment = new TimePickerFragment(this);
                 timeFragment.show(fmTime, "timePicker");
+                break;
+
+            case R.id.buttonDur:
+                EditText edr = (EditText) findViewById(R.id.editDur);
+                edr.requestFocus();
                 break;
 
             case R.id.buttonDate:
