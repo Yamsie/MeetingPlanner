@@ -57,7 +57,6 @@ public class ArrangeMeeting extends AppCompatActivity {
                 }
             }
         } else if(reqCode == START_CAL) {
-            Toast.makeText(this, "Reached Start_cal", Toast.LENGTH_LONG).show();
             if(RESULT_OK == resultCode) {
                 Intent intent = getIntent();
                 finish();

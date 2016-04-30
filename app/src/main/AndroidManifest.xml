@@ -49,7 +49,9 @@
         </activity>
         <activity android:name=".SelectFavourites" />
         <activity android:name=".FavActivities" />
-        <activity android:name=".FavLocations"></activity>
+        <activity android:name=".FavLocations" />
+        <activity android:name=".SelActivity" />
+        <activity android:name=".SelLocation"></activity>
     </application>
 
 </manifest>
