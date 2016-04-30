@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.james.meetingplanner.SelActivity">
 
+
     <ListView
         android:id="@+id/listContent"
         android:layout_height="wrap_content"

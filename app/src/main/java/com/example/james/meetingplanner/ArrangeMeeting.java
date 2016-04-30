@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,6 +96,11 @@ public class ArrangeMeeting extends AppCompatActivity {
                 timeFragment.show(fmTime, "timePicker");
                 break;
 
+            case R.id.buttonDur:
+                EditText edr = (EditText) findViewById(R.id.editDur);
+                edr.requestFocus();
+                break;
+
             case R.id.buttonDate:
                 FragmentManager fmDate = this.getFragmentManager();
                 dateFragment = new DatePickerFragment(this);
@@ -111,7 +118,8 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
-
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.ding);
+                mp.start();
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
@@ -189,9 +197,9 @@ public class ArrangeMeeting extends AppCompatActivity {
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(edu)) {
-                    Toast.makeText(this, "Enter a duration less than 12!", Toast.LENGTH_SHORT).show();
-                } else if (!isValidNum(edu)){
                     Toast.makeText(this, "Enter a duration!", Toast.LENGTH_SHORT).show();
+                } else if (!isValidNum(edu)){
+                    Toast.makeText(this, "Enter a duration less than 13 hours!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(en) || !isValid(el) || !isValid(ea) || !isValid(edu)) {
                     Toast.makeText(this, "Please fill in all fields with alphanumerical characters only!", Toast.LENGTH_SHORT).show();
                 }
