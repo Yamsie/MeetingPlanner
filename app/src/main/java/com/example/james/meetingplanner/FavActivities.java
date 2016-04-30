@@ -35,7 +35,7 @@ public class FavActivities extends AppCompatActivity {
         String[] values = new String[data.size()];
         for (int i = 0; i < values.length; i++)
             values[i] = data.get(i);
-//
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
