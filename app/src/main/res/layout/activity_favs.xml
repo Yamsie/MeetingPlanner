@@ -28,7 +28,7 @@
             android:inputType="text"
             android:maxLength="15"
             android:layout_gravity="center"
-            android:textSize="5pt"
+            android:textSize="8pt"
             android:singleLine="true" />
 
     </LinearLayout>

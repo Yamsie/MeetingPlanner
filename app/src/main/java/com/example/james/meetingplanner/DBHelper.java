@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public DBHelper(Context context){
-        super(context,DB_NAME,null,1);
+        super(context, DB_NAME, null, 1);
     }
 
     @Override
@@ -153,31 +153,29 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    protected boolean searchActivities(String act) {
-    boolean returnVal;
-    SQLiteDatabase db = instance.getReadableDatabase();
-    String query = "Select * from activities where activity = '" + act + "';";
-    Cursor c = db.rawQuery(query, null);
-    if(c == null){
-        returnVal = false;
-    } else {
-        returnVal = true;
-    }
-    c.close();
-    return returnVal;
+    protected boolean searchActivities(String act, Context c) {
+        boolean returnVal = true;
+        ArrayList<String> list = viewActivities(c);
+
+        for(int i = 0; i < list.size(); i++) {
+            if (act.toLowerCase().compareTo(list.get(i).toLowerCase()) == 0) {
+                returnVal = false;
+                i = list.size();
+            }
+        }
+        return returnVal;
     }
 
-    protected boolean searchLocations(String loc) {
-    boolean returnVal;
-    SQLiteDatabase db = instance.getReadableDatabase();
-    String query = "Select * from locations where location = '" + loc + "';";
-    Cursor c = db.rawQuery(query, null);
-    if(c == null){
-        returnVal = false;
-    } else {
-        returnVal = true;
-    }
-    c.close();
-    return returnVal;
+    protected boolean searchLocations(String loc, Context c) {
+        boolean returnVal = true;
+        ArrayList<String> list = viewLocations(c);
+
+        for (int i = 0; i < list.size(); i++) {
+            if (loc.toLowerCase().compareTo(list.get(i).toLowerCase()) == 0) {
+                returnVal = false;
+                i = list.size();
+            }
+        }
+        return returnVal;
     }
 }

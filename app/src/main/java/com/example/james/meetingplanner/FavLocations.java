@@ -83,11 +83,10 @@ public class FavLocations extends AppCompatActivity {
 
                 EditText afa = (EditText) findViewById(R.id.addNew);
                 String input = afa.getText().toString();
-                boolean present = dbhelper.searchLocations(input);
+                boolean present = dbhelper.searchLocations(input, this);
                 if(present) {
                     if (input.matches(pattern)) {
                         dbhelper.addLocations(input, this);
-                        Toast.makeText(this, "Added to DB", Toast.LENGTH_LONG).show();
                         Intent thisintent = getIntent();
                         finish();
                         startActivity(thisintent);

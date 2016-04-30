@@ -121,7 +121,6 @@ public class ArrangeMeeting extends AppCompatActivity {
                     TextView et = (TextView) findViewById(R.id.editTime);
 
                     if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
-                        Toast.makeText(this, "Date parsed and returned!", Toast.LENGTH_SHORT).show();
 
                         String name  = en.getText() . toString() . trim();
                         String location = el.getText() . toString() . trim();
@@ -140,7 +139,7 @@ public class ArrangeMeeting extends AppCompatActivity {
 
                         Meetings m1 = new Meetings(name, location, time, date, activity, duration);
                         dbhelper.addMeetings(m1, this);
-                        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Meeting saved!", Toast.LENGTH_LONG).show();
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
