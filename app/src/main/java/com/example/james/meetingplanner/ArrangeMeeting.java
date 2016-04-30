@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -117,7 +118,8 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
-
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.ding);
+                mp.start();
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
