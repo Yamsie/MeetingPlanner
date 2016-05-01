@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class SelLocation extends AppCompatActivity {
+    //This activity allows you to select a favourite location when arranging a meeting
 
     private DBHelper dbhelper;
     private SQLiteDatabase db;
@@ -29,6 +30,7 @@ public class SelLocation extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.listContent);
 
+        //This method call lists out all the locations in the locations table
         ArrayList<String> data = dbhelper.viewLocations(this);
 
         String[] values = new String[data.size()];
@@ -44,7 +46,7 @@ public class SelLocation extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
+                //If an activity is pressed, it is added to the arrange meeting activity in the location section
 
                 final int itemPosition = position;
                 final String itemValue = (String) listView.getItemAtPosition(position);

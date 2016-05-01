@@ -11,10 +11,12 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 
-public class TimePickerFragment extends DialogFragment
-        implements TimePickerDialog.OnTimeSetListener {
+public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
     public Activity activity;
+
+    public TimePickerFragment(){
+    }
 
     TimePickerFragment(Activity inActivity) {
         activity = inActivity;

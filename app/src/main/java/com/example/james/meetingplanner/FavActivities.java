@@ -12,10 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class FavActivities extends AppCompatActivity {
+    //This activity displays all saved activities and allows for the inclusion of more favourite activities
+    //and the deletion of selected activities
 
     private DBHelper dbhelper;
     private SQLiteDatabase db;
@@ -23,6 +24,7 @@ public class FavActivities extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //This method displays all the activities in the activities table, using an array adapter and a listview
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
 
@@ -46,7 +48,7 @@ public class FavActivities extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
+            //If an activity is clicked, a dialog box appears asking if you want to delete this item
 
 
                 final int itemPosition     = position;
@@ -58,6 +60,8 @@ public class FavActivities extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
+                                //If you press yes on the dialog box, the item is deleted
+                                //and disappears from the screen
                                 dbhelper.delActivities(itemValue, FavActivities.this);
                                 Intent yesintent = getIntent();
                                 finish();
@@ -65,6 +69,7 @@ public class FavActivities extends AppCompatActivity {
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
+                                //If no is pressed, the item is not deleted and the screen remains the same
                                 Intent nointent = getIntent();
                                 finish();
                                 startActivity(nointent);
@@ -72,7 +77,7 @@ public class FavActivities extends AppCompatActivity {
                         }
                     }
                 };
-
+                //This code segment creates the dialog box to display the display the message
                 AlertDialog.Builder builder = new AlertDialog.Builder(FavActivities.this);
                 builder.setMessage("Would you like to remove " + itemValue + "?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
@@ -83,7 +88,10 @@ public class FavActivities extends AppCompatActivity {
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.add:
-
+                //If the add button is clicked, the input is taken from the editbox and searched for in the activities table.
+                //If already present in the table a toast message is stating this appears
+                //Otherwise, the input is validated and added to table if valid
+                //If the input is invalid a toast message stating this appears
                 EditText afa = (EditText) findViewById(R.id.addNew);
                 String input = afa.getText().toString();
                 boolean present = dbhelper.searchActivities(input, this);
@@ -110,5 +118,4 @@ public class FavActivities extends AppCompatActivity {
                 break;
         }
     }
-
 }

@@ -10,10 +10,12 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 
-public class DatePickerFragment extends DialogFragment
-        implements DatePickerDialog.OnDateSetListener {
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     public Activity activity;
+
+    public DatePickerFragment(){
+    }
 
     DatePickerFragment(android.app.Activity inActivity) {
         activity = inActivity;
