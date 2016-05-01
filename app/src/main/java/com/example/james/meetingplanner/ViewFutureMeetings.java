@@ -30,7 +30,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
         long currTime = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
