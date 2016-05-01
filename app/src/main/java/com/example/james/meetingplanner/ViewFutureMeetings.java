@@ -34,15 +34,16 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
         long currTime = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings where date > date('now');", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE 'date' >= " + cd + ";", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE strftime('%s', date) > strftime('%s','now');", null);
         //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date < '" + cd + "';", null);
         //Cursor c = db.rawQuery("SELECT DISTINCT friend, date FROM meetings WHERE (strftime('%s','now') - strftime('%s', date)) < 0;", null);
         int num = c.getCount();
-        ArrayList<String> ms = new ArrayList<>();
+        ArrayList<String> ms = new ArrayList<String>();
         //Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
         int count = 0;
         String name = "", date = "";
