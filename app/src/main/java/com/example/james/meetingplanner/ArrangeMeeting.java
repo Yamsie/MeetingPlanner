@@ -27,6 +27,7 @@ import java.util.Date;
 
 public class ArrangeMeeting extends AppCompatActivity {
 
+    // Global declarations. Used for starting activities for result.
     private final int PICK_CONTACT = 1;
     private final int START_CAL = 2;
     private final int PICK_ACTIVITY = 3;
@@ -38,13 +39,16 @@ public class ArrangeMeeting extends AppCompatActivity {
 
 
 
+    // Starts when app is created.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arrange_meeting);
-        dbhelper = DBHelper.getInstance(this);
+        dbhelper = DBHelper.getInstance(this); // Sets instance of DBHelper
     }
 
+
+    // Called when an intent is started. The reqCode is compared and it checked in if else statements.
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
@@ -118,7 +122,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
-                MediaPlayer mp = MediaPlayer.create(this, R.raw.ding);
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.ding); //"ding" sound for when button is pressed
                 mp.start();
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
@@ -128,7 +132,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                     TextView ed = (TextView) findViewById(R.id.editDate);
                     TextView et = (TextView) findViewById(R.id.editTime);
 
-                    //if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
+                    if (compareWithCurrentDate(ed.getText().toString(), et.getText().toString())) {
 
                         String name  = en.getText() . toString() . trim();
                         String location = el.getText() . toString() . trim();
@@ -190,16 +194,16 @@ public class ArrangeMeeting extends AppCompatActivity {
                             Toast.makeText(this, "Unexpected error", Toast.LENGTH_SHORT).show();
                         }
 
-                    //} else {
-                        //.makeText(this, "Select a later time!", Toast.LENGTH_SHORT).show();
-                    //}
+                    } else {
+                        Toast.makeText(this, "Select a later time or date!", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else if (dateFragment == null && timeFragment == null) {
                     Toast.makeText(this, "Select a time and date!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(edu)) {
                     Toast.makeText(this, "Enter a duration!", Toast.LENGTH_SHORT).show();
                 } else if (!isValidNum(edu)){
-                    Toast.makeText(this, "Enter a duration less than 13 hours!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Enter a duration between  hours!", Toast.LENGTH_SHORT).show();
                 } else if (!isValid(en) || !isValid(el) || !isValid(ea) || !isValid(edu)) {
                     Toast.makeText(this, "Please fill in all fields with alphanumerical characters only!", Toast.LENGTH_SHORT).show();
                 }

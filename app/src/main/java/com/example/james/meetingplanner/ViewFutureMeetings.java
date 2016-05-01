@@ -23,6 +23,7 @@ import java.util.Date;
 
 public class ViewFutureMeetings extends AppCompatActivity {
 
+    int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +86,12 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                counter++;
+                if(counter == 2) {
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }
                 DBHelper dbhelper;
                 SQLiteDatabase db;
                 ListView listView3 = (ListView) findViewById(R.id.list_view);
