@@ -61,6 +61,4 @@
         android:scaleType="fitXY"
         android:background = "@drawable/favs"
         android:padding="0dp" />
-
-
 </RelativeLayout>

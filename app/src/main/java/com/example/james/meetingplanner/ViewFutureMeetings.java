@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android .widget.Toast;
 import android.content.Context;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ViewFutureMeetings extends AppCompatActivity {
 
@@ -32,23 +34,43 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
         long currTime = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
         String ct = sdf.format(currTime);
+        String cd = sdf2.format(currTime);
 
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now') AND time > time('now')", null);
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now');", null);
-                //AND time > '"+ ct + "';", null);
-        //only checks the date, not the time if the meeting is today
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings;", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date < '" + cd + "';", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend, date FROM meetings WHERE (strftime('%s','now') - strftime('%s', date)) < 0;", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<>();
-        Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
         int count = 0;
-        String name = "";
-        if (c.moveToFirst()) {
+        String name = "", date = "";
+        if ((c.moveToFirst()) && (num > 0)) {
             do {
-                name = c.getString(c.getColumnIndex(DBHelper.COL1));
-                ms.add(name);
-            }
-            while (c.moveToNext());
+                //name = c.getString(c.getColumnIndex(DBHelper.COL1));
+                //date = c.getString(c.getColumnIndex(DBHelper.COL4));
+                name = c.getString(0);
+                date = c.getString(3);
+                try {
+                    Date savedMeeting = sdf2.parse(date);
+                    Date today = sdf2.parse(cd);
+                    if(savedMeeting.compareTo(today) == 0) {
+                        //put code for comparing times in here
+
+                    } else if(savedMeeting.compareTo(today) < 0 ){
+                        //meeting in future
+                        ms.add(name);
+                    }
+                }
+                catch(ParseException pEx) {
+                    Toast.makeText(this, "Error: Unable to parse current date.", Toast.LENGTH_SHORT).show();
+                }
+                //ms.add(name);
+            }while (c.moveToNext());
+        }
+        else{
+            Toast.makeText(this, "No future meetings.", Toast.LENGTH_SHORT).show();
         }
         //putting friend values from the array into an ArrayList
         String[] v = new String[ms.size()];
@@ -57,6 +79,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, v);
         listView1.setAdapter(adapter);
+
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -65,7 +88,6 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 DBHelper dbhelper;
                 SQLiteDatabase db;
                 ListView listView3 = (ListView) findViewById(R.id.list_view);
-
                 final int itemPosition = position;
                 final String itemValue = (String) listView3.getItemAtPosition(position);
 

@@ -33,7 +33,7 @@ public class ViewPastMeetings extends AppCompatActivity {
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date <= date('now')", null);
+        Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date > '" + cd + "';", null);
         //only checks the date, not the time if the meeting is today
         int num = c.getCount();
         Toast.makeText(this,num + " number of rows", Toast.LENGTH_SHORT).show();
@@ -49,10 +49,13 @@ public class ViewPastMeetings extends AppCompatActivity {
                 data += c.getString(c.getColumnIndex(DBHelper.COL4)) + ", "; //date
                 data += c.getString(c.getColumnIndex(DBHelper.COL9));       //duration
 
+                ms[count] = data;
+                count++;
+
                 //comparision for todays date, if the time is is the past or future
                 String time = c.getString(c.getColumnIndex(DBHelper.COL3));
                 String date = c.getString(c.getColumnIndex(DBHelper.COL4));
-                if(date.equals(cd)){
+                /*if(date.equals(cd)){
                 //if the meeting is occurring today
                     try {
                         Date meeting = sdf.parse(time);
@@ -69,9 +72,8 @@ public class ViewPastMeetings extends AppCompatActivity {
                 else {
                     ms[count] = data;
                     count++;
-                }
-            }
-            while (c.moveToNext());
+                }*/
+            }while (c.moveToNext());
         }
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, ms);
         listView2.setAdapter(adapter2);
