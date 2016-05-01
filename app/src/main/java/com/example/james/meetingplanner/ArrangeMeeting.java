@@ -216,7 +216,7 @@ public class ArrangeMeeting extends AppCompatActivity {
         String fullDate = date + " " + time;
         Calendar cal = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         try {
             cal.setTime(dateFormat.parse(fullDate));

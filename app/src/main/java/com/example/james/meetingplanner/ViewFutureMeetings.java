@@ -30,10 +30,12 @@ public class ViewFutureMeetings extends AppCompatActivity {
 
         long currTime = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date < date('now');", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now');", null);
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date > '"+cd+"') OR (date = '" + cd + "' AND time > '" + ct + "');", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<>();

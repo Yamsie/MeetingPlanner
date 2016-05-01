@@ -27,14 +27,17 @@ public class ViewPastMeetings extends AppCompatActivity {
 
         long currTime = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date < date('now')) OR (date = '" + cd + "' AND time < '" + ct + "');", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now');", null);
+        //Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date <= date('now')", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date < '"+cd+"') OR (date = '" + cd + "' AND time < '" + ct + "');", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date < date('now')) OR ((date = ('now')) AND (time < '" + ct + "'));", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<>();
         String name = "";
