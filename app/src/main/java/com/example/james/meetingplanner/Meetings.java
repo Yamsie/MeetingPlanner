@@ -2,6 +2,7 @@ package com.example.james.meetingplanner;
 
 public class Meetings {
 
+    //This is the class for the Meetings object
     String tableName = "meetings";
     String friend;
     String location;
@@ -28,6 +29,7 @@ public class Meetings {
         this.extra = ex;
     }
 
+    //getter and setter methods
 
     public void setFriend(String f){
         this.friend = f;
@@ -73,11 +75,5 @@ public class Meetings {
         return activity;
     }
 
-    public String getDuration(){
-        return duration;
-    }
-
-    public String toStringDisplay(){
-         return this.friend + ", " + this.location + ", " + this.time + ", " + this.date + ", " + this.activity + ", " + this.duration;
-    }
+    public String getDuration(){ return duration; }
 }
