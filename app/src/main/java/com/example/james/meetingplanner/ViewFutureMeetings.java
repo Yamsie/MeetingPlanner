@@ -33,12 +33,17 @@ public class ViewFutureMeetings extends AppCompatActivity {
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date >= '" + cd + "' AND time > '" + ct + "';", null);
+        //WORKS FOR FURTURE TIME TODAYS DATE
+        //WORKS FOR FUTURE
+        //FUTURE MEETINGS WORK DO NOT TOUCH THISSSSSS
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date >= '" + cd + "' AND time > '" + ct + "';", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date > '"+cd+"') OR (date = '" + cd + "' AND time > '" + ct + "');", null);
+        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date > ('now')) OR (date = ('now') AND time > '" + ct + "');", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<String>();
-        Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
         String name = "";
         if ((c.moveToFirst()) && (num > 0)) {
+            Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
             do {
                 name = c.getString(c.getColumnIndex(DBHelper.COL1));
                 ms.add(name);
@@ -60,7 +65,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 counter++;
-                if(counter == 2) {
+                if (counter == 2) {
                     Intent intent = getIntent();
                     finish();
                     startActivity(intent);
