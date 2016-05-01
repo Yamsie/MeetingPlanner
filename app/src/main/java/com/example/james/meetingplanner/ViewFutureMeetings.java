@@ -1,6 +1,7 @@
 package com.example.james.meetingplanner;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -27,10 +28,12 @@ public class ViewFutureMeetings extends AppCompatActivity {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
         long currTime = System.currentTimeMillis();
-        SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sdf2= new SimpleDateFormat("dd/MM/yyyy");
+        String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE 'date' >= " + cd + ";", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date >= '" + cd + "' AND time > '" + ct + "';", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<String>();
         Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();

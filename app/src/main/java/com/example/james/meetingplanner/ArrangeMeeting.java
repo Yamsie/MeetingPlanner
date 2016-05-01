@@ -170,6 +170,7 @@ public class ArrangeMeeting extends AppCompatActivity {
                             calintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             calintent.putExtra("EXIT", true);
 
+                            // Dialog box for when everything is written to database
                             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

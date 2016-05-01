@@ -33,7 +33,7 @@ public class ViewPastMeetings extends AppCompatActivity {
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date > '" + cd + "';", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date <= '" + cd + "' AND time < '" + ct + "';", null);
         //only checks the date, not the time if the meeting is today
         int num = c.getCount();
         Toast.makeText(this,num + " number of rows", Toast.LENGTH_SHORT).show();
