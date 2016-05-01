@@ -10,16 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android .widget.Toast;
-import android.content.Context;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ViewPastMeetings extends AppCompatActivity {
+    //This method displays all the past meetings, by comparing the dates and times of meetings in the database
+    //with the current time and date
 
     int counter = 0;
     @Override
@@ -37,10 +34,9 @@ public class ViewPastMeetings extends AppCompatActivity {
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        Cursor c = db.rawQuery("SELECT friend FROM meetings WHERE (date < date('now')) OR ((date = '" + cd + "') AND (time < '" + ct + "'));", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date < date('now')) OR (date = '" + cd + "' AND time < '" + ct + "');", null);
         int num = c.getCount();
-        ArrayList<String> ms = new ArrayList<String>();
-
+        ArrayList<String> ms = new ArrayList<>();
         String name = "";
         if ((c.moveToFirst()) && (num > 0)) {
             Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
@@ -52,7 +48,7 @@ public class ViewPastMeetings extends AppCompatActivity {
         else{
             Toast.makeText(this, "No past meetings.", Toast.LENGTH_SHORT).show();
         }
-        //putting friend values from the array into an ArrayList
+        //putting friend values from the ArrayList into an array
         String[] v = new String[ms.size()];
         for (int i = 0; i < v.length; i++) {
             v[i] = ms.get(i);
@@ -61,9 +57,9 @@ public class ViewPastMeetings extends AppCompatActivity {
         listView2.setAdapter(adapter2);
 
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //method for viewing meeting details
                 counter++;
                 if (counter == 2) {
                     Intent intent = getIntent();
@@ -103,6 +99,7 @@ public class ViewPastMeetings extends AppCompatActivity {
                 for (int i = 0; i < list.length; i++) {
                     message += list[i] + "\n";
                 }
+                //displays meeting details
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(ViewPastMeetings.this);
                 builder1.setMessage(message);
             }
