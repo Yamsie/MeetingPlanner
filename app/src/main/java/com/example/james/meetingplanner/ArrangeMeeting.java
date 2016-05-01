@@ -147,7 +147,7 @@ public class ArrangeMeeting extends AppCompatActivity {
 
                         Meetings m1 = new Meetings(name, location, time, date, activity, duration);
                         dbhelper.addMeetings(m1, this);
-                        Toast.makeText(this, "Meeting saved!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Meeting saved!", Toast.LENGTH_SHORT).show();
 
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");

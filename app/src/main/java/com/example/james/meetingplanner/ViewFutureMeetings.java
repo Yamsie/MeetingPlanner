@@ -38,7 +38,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
-        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings;", null);
+        Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings where date > date('now');", null);
         //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date < '" + cd + "';", null);
         //Cursor c = db.rawQuery("SELECT DISTINCT friend, date FROM meetings WHERE (strftime('%s','now') - strftime('%s', date)) < 0;", null);
         int num = c.getCount();
@@ -48,11 +48,11 @@ public class ViewFutureMeetings extends AppCompatActivity {
         String name = "", date = "";
         if ((c.moveToFirst()) && (num > 0)) {
             do {
-                //name = c.getString(c.getColumnIndex(DBHelper.COL1));
+                name = c.getString(c.getColumnIndex(DBHelper.COL1));
                 //date = c.getString(c.getColumnIndex(DBHelper.COL4));
-                name = c.getString(0);
-                date = c.getString(3);
-                try {
+                //name = c.getString(0);
+                //date = c.getString(3);
+                /*try {
                     Date savedMeeting = sdf2.parse(date);
                     Date today = sdf2.parse(cd);
                     if(savedMeeting.compareTo(today) == 0) {
@@ -65,8 +65,8 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 }
                 catch(ParseException pEx) {
                     Toast.makeText(this, "Error: Unable to parse current date.", Toast.LENGTH_SHORT).show();
-                }
-                //ms.add(name);
+                }*/
+                ms.add(name);
             }while (c.moveToNext());
         }
         else{
