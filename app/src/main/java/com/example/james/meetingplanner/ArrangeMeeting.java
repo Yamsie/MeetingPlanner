@@ -37,8 +37,6 @@ public class ArrangeMeeting extends AppCompatActivity {
     private DBHelper dbhelper;
     private SQLiteDatabase db;
 
-
-
     // Starts when app is created.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,8 +120,6 @@ public class ArrangeMeeting extends AppCompatActivity {
                 break;
 
             case R.id.buttonSubmit:
-                MediaPlayer mp = MediaPlayer.create(this, R.raw.ding); //"ding" sound for when button is pressed
-                mp.start();
                 EditText en = (EditText) findViewById(R.id.editCon);
                 EditText el = (EditText) findViewById(R.id.editLoc);
                 EditText ea = (EditText) findViewById(R.id.editAct);
