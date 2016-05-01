@@ -1,25 +1,18 @@
 package com.example.james.meetingplanner;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android .widget.Toast;
-import android.content.Context;
+import android.widget.Toast;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ViewFutureMeetings extends AppCompatActivity {
 
@@ -34,40 +27,17 @@ public class ViewFutureMeetings extends AppCompatActivity {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
         long currTime = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd");
-        String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE 'date' >= " + cd + ";", null);
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE strftime('%s', date) > strftime('%s','now');", null);
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date < '" + cd + "';", null);
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend, date FROM meetings WHERE (strftime('%s','now') - strftime('%s', date)) < 0;", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<String>();
-        //Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
-        int count = 0;
-        String name = "", date = "";
+        Toast.makeText(this, "Click a name to view meeting details!", Toast.LENGTH_SHORT).show();
+        String name = "";
         if ((c.moveToFirst()) && (num > 0)) {
             do {
                 name = c.getString(c.getColumnIndex(DBHelper.COL1));
-                //date = c.getString(c.getColumnIndex(DBHelper.COL4));
-                //name = c.getString(0);
-                //date = c.getString(3);
-                /*try {
-                    Date savedMeeting = sdf2.parse(date);
-                    Date today = sdf2.parse(cd);
-                    if(savedMeeting.compareTo(today) == 0) {
-                        //put code for comparing times in here
-
-                    } else if(savedMeeting.compareTo(today) < 0 ){
-                        //meeting in future
-                        ms.add(name);
-                    }
-                }
-                catch(ParseException pEx) {
-                    Toast.makeText(this, "Error: Unable to parse current date.", Toast.LENGTH_SHORT).show();
-                }*/
                 ms.add(name);
             }while (c.moveToNext());
         }
@@ -95,7 +65,6 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 DBHelper dbhelper;
                 SQLiteDatabase db;
                 ListView listView3 = (ListView) findViewById(R.id.list_view);
-                final int itemPosition = position;
                 final String itemValue = (String) listView3.getItemAtPosition(position);
 
                 dbhelper = DBHelper.getInstance(ViewFutureMeetings.this);
@@ -119,6 +88,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
                     }
                     while (c.moveToNext());
                 }
+                c.close();
                 ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(ViewFutureMeetings.this, android.R.layout.simple_list_item_1, android.R.id.text1, list);
                 listView3.setAdapter(adapter3);
                 String message = "";
@@ -129,5 +99,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
                 builder.setMessage(message);
             }
         });
+        db.close();
+        c.close();
     }
 }
