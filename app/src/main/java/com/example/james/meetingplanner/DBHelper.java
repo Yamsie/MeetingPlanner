@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    //declarations of all the final variables necessary for the database schema
     public static final String DB_NAME = "meetings_planner";
     public static final int DB_VERSION = 1;
     public static final String mTable = "meetings";
@@ -20,6 +21,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ACTIVITIES = "CREATE TABLE IF NOT EXISTS " + aTable + " (activity VARCHAR);";
     private static final String CREATE_TABLE_LOCATIONS = "CREATE TABLE IF NOT EXISTS " + lTable + " (location VARCHAR);";
 
+    private static final String DELETE_TABLE = "DROP TABLE IF EXISTS";
+
     public static final String COL1 = "friend";
     public static final String COL2 = "location";
     public static final String COL3 = "time";
@@ -29,9 +32,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String location = "location";
     public static final String activity = "activity";
 
-    //singleton class
     private static DBHelper instance;
+
     public static DBHelper getInstance(Context context) {
+        //singleton class for dbhelper, this method is called instead of creating new instances of the DBHelper
         if (instance == null) {
             instance = new DBHelper(context.getApplicationContext());
         }
@@ -44,6 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //creates the database tables when the app is run for the first time
         db.execSQL(CREATE_TABLE_MEETINGS);
         db.execSQL(CREATE_TABLE_ACTIVITIES);
         db.execSQL(CREATE_TABLE_LOCATIONS);
@@ -51,11 +56,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-        //SHOULDN'T BE NEEDED FOR THE PROJECT - TO BE IMPLEMENTED LATER
-        database.execSQL("DROP TABLE IF EXISTS ");
+        //upgrades database - not used in this project but added in for completeness sake
+        database.execSQL(DELETE_TABLE + mTable);
+        database.execSQL(DELETE_TABLE + aTable);
+        database.execSQL(DELETE_TABLE + lTable);
+        onCreate(database);
     }
 
     public void addMeetings(Meetings m, Context c){
+        //receives a Meetings object and adds it to the meetings table
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL1, m.getFriend());
@@ -70,6 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void addActivities(String act, Context c) {
+        //Receives a String representing an activity and adds it to the activities table
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(activity, act);
@@ -79,6 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void addLocations(String loc, Context c) {
+        //Receives a String representing an locations and adds it to the locations table
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(location, loc);
@@ -88,6 +99,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean delActivities(String act, Context c) {
+        //Deletes an activity from the activities table
         boolean returnVal;
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
 
@@ -97,6 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean delLocations(String loc, Context c) {
+        //deletes a location from the locations table
         boolean returnVal;
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
 
@@ -105,8 +118,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnVal;
     }
 
-    // BOTH TO BE USED FOR LISTING WHAT CURRENTLY EXISTS IN TABLES
     public ArrayList<String> viewActivities(Context c) {
+        //Displays what is currently in the activities table
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM activities;", null);
         int count = cur.getCount();
@@ -130,6 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> viewLocations(Context c) {
+        //Displays what is currently in the locations table
         SQLiteDatabase db = DBHelper.getInstance(c).getWritableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM locations;", null);
         int count = cur.getCount();
@@ -154,6 +168,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     protected boolean searchActivities(String act, Context c) {
+        //To check if an activity is already present in the activities table when entering a new activity
         boolean returnVal = true;
         ArrayList<String> list = viewActivities(c);
 
@@ -167,6 +182,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     protected boolean searchLocations(String loc, Context c) {
+        //To check if a location is already present in the locations table when entering a new location
         boolean returnVal = true;
         ArrayList<String> list = viewLocations(c);
 
