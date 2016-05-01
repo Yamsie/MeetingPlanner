@@ -34,8 +34,7 @@ public class ViewFutureMeetings extends AppCompatActivity {
         String ct = sdf.format(currTime);
         String cd = sdf2.format(currTime);
 
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date < date('now');", null);
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now');", null);
+        //This query grabs all the meetings where the date is in the future or if the date is today, the time has not passed yet
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date > '"+cd+"') OR (date = '" + cd + "' AND time > '" + ct + "');", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<>();

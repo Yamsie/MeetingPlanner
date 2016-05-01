@@ -34,10 +34,8 @@ public class ViewPastMeetings extends AppCompatActivity {
         DBHelper dbhelper = DBHelper.getInstance(this);
         SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE date > date('now');", null);
-        //Cursor c = db.rawQuery("SELECT * FROM meetings WHERE date <= date('now')", null);
+        //This query grabs all the meetings where the date is in the past or if the date is today, the time has passed
         Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date < '"+cd+"') OR (date = '" + cd + "' AND time < '" + ct + "');", null);
-        //Cursor c = db.rawQuery("SELECT DISTINCT friend FROM meetings WHERE (date < date('now')) OR ((date = ('now')) AND (time < '" + ct + "'));", null);
         int num = c.getCount();
         ArrayList<String> ms = new ArrayList<>();
         String name = "";
